@@ -5,7 +5,8 @@ using UnityEngine;
 public class Current_Investments : MonoBehaviour
 {
     [SerializeField]
-    private GameObject menu;
+    private GameObject newMenu;
+    private GameObject editMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -15,16 +16,21 @@ public class Current_Investments : MonoBehaviour
 
     public void Cancel()
     {
-        menu.SetActive(false);
+        newMenu.SetActive(false);
+        editMenu.SetActive(false);
     }
 
     public void New()
     {
-        menu.SetActive(true);
+        newMenu.SetActive(true);
     }
 
     public void Add()
     {
 
+    }
+    public void Edit()
+    {
+        editMenu.SetActive(false);
     }
 }
