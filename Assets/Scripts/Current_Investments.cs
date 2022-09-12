@@ -76,7 +76,6 @@ public class Current_Investments : MonoBehaviour
 
         // Fix values
         string[] stock = utilities.FixStock(code, name, quantity, value);
-        Debug.Log(stock[0]);
 
         // Create new stock item
         GameObject newStock = Instantiate(stockItem, stockList.transform);
