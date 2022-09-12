@@ -6720,6 +6720,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1178465007}
+  - component: {fileID: 1178465009}
   - component: {fileID: 1178465008}
   m_Layer: 0
   m_Name: Manager
@@ -6755,14 +6756,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9bb6deadadd66f47a1e8a5cd6d42f88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 0}
+--- !u!114 &1178465009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178465006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adb2c5fffa4c3ae46b21b1106dcee42c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   newMenu: {fileID: 552182646}
   editMenu: {fileID: 0}
   newCode: {fileID: 1685945684}
   newName: {fileID: 943952148}
   newQuantity: {fileID: 1448881134}
   newValue: {fileID: 105263440}
-  stockItem: {fileID: 4645616318664757597, guid: d4a66bd01fac862468a857eb6aa7cb41, type: 3}
   stockList: {fileID: 1504037556}
+  stockItem: {fileID: 4645616318664757597, guid: d4a66bd01fac862468a857eb6aa7cb41, type: 3}
 --- !u!1 &1179488480
 GameObject:
   m_ObjectHideFlags: 0

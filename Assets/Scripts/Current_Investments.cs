@@ -6,31 +6,39 @@ using TMPro;
 
 public class Current_Investments : MonoBehaviour
 {
+    [Header("Manager")]
+    [SerializeField]
+    private Manager manager;
+
     [Header("Menus")]
-    [SerializeField]
     private GameObject newMenu;
-    [SerializeField]
     private GameObject editMenu;
 
     [Header("Menu's Texts")]
-    [SerializeField]
     private GameObject newCode;
-    [SerializeField]
     private GameObject newName;
-    [SerializeField]
     private GameObject newQuantity;
-    [SerializeField]
     private GameObject newValue;
 
-    [SerializeField]
-    private GameObject stockItem;
-    [SerializeField]
+    [Header("Stocks")]
     private GameObject stockList;
+    private GameObject stockItem;
 
     // Start is called before the first frame update
     void Start()
     {
+        manager = this.GetComponent<Manager>();
 
+        newMenu = manager.newMenu;
+        editMenu = manager.editMenu;
+
+        newCode = manager.newCode;
+        newName = manager.newName;
+        newQuantity = manager.newQuantity;
+        newValue = manager.newValue;
+
+        stockList = manager.stockList;
+        stockItem = manager.stockItem;
     }
 
     public void Cancel()
