@@ -17,7 +17,7 @@ public class Utilities : MonoBehaviour
     }
 
     // Validate values
-    public bool isStockInvalid(string code, string name, string quantity, string value)
+    public bool IsStockInvalid(string code, string name, string quantity, string value)
     {
         int number;
         if (code.Length > 10 || name.Length > 30 || !int.TryParse(quantity, out number) || !int.TryParse(value, out number))
@@ -28,7 +28,7 @@ public class Utilities : MonoBehaviour
     }
 
     // Fix values
-    public string[] fixStock(string code, string name, string quantity, string value)
+    public string[] FixStock(string code, string name, string quantity, string value)
     {
         string tmpCode = code.ToUpper();
         string[] _name = name.Split(" ");

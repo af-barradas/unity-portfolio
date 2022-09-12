@@ -51,7 +51,7 @@ public class Current_Investments : MonoBehaviour
         newValue.GetComponent<TMP_InputField>().text = "";
 
         newMenu.SetActive(false);
-        //editMenu.SetActive(false);
+        editMenu.SetActive(false);
     }
 
     public void New()
@@ -68,21 +68,21 @@ public class Current_Investments : MonoBehaviour
         string value = newValue.GetComponent<TMP_InputField>().text;
 
         // Validate values
-        if (utilities.isStockInvalid(code, name, quantity, value))
+        if (utilities.IsStockInvalid(code, name, quantity, value))
         {
             Cancel();
             return;
         }
 
         // Fix values
-        string[] stock = utilities.fixStock(code, name, quantity, value);
+        string[] stock = utilities.FixStock(code, name, quantity, value);
         Debug.Log(stock[0]);
 
         // Create new stock item
         GameObject newStock = Instantiate(stockItem, stockList.transform);
 
         // Change values with user input
-        newStock.GetComponent<Stock>().setStock(stock[0], stock[1], stock[2], stock[3]);
+        newStock.GetComponent<Stock>().SetStock(stock[0], stock[1], stock[2], stock[3]);
 
         // Move stock item inside stock list
         newStock.transform.SetParent(stockList.transform);
@@ -93,5 +93,15 @@ public class Current_Investments : MonoBehaviour
     public void Edit()
     {
         editMenu.SetActive(true);
+    }
+
+    public void Save()
+    {
+        editMenu.SetActive(false);
+    }
+
+    public void Delete()
+    {
+        editMenu.SetActive(false);
     }
 }
