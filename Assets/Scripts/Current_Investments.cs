@@ -19,6 +19,10 @@ public class Current_Investments : MonoBehaviour
     private GameObject newName;
     private GameObject newQuantity;
     private GameObject newValue;
+    private GameObject editCode;
+    private GameObject editName;
+    private GameObject editQuantity;
+    private GameObject editValue;
 
     [Header("Stocks")]
     private GameObject stockList;
@@ -38,6 +42,11 @@ public class Current_Investments : MonoBehaviour
         newQuantity = manager.newQuantity;
         newValue = manager.newValue;
 
+        editCode = manager.editCode;
+        editName = manager.editName;
+        editQuantity = manager.editQuantity;
+        editValue = manager.editValue;
+
         stockList = manager.stockList;
         stockItem = manager.stockItem;
     }
@@ -49,6 +58,11 @@ public class Current_Investments : MonoBehaviour
         newName.GetComponent<TMP_InputField>().text = "";
         newQuantity.GetComponent<TMP_InputField>().text = "";
         newValue.GetComponent<TMP_InputField>().text = "";
+
+        editCode.GetComponent<TMP_InputField>().text = "";
+        editName.GetComponent<TMP_InputField>().text = "";
+        editQuantity.GetComponent<TMP_InputField>().text = "";
+        editValue.GetComponent<TMP_InputField>().text = "";
 
         newMenu.SetActive(false);
         editMenu.SetActive(false);
@@ -75,13 +89,13 @@ public class Current_Investments : MonoBehaviour
         }
 
         // Fix values
-        string[] stock = utilities.FixStock(code, name, quantity, value);
+        string[] stockValues = utilities.FixStock(code, name, quantity, value);
 
         // Create new stock item
         GameObject newStock = Instantiate(stockItem, stockList.transform);
 
         // Change values with user input
-        newStock.GetComponent<Stock>().SetStock(stock[0], stock[1], stock[2], stock[3]);
+        newStock.GetComponent<Stock>().SetStock(stockValues[0], stockValues[1], stockValues[2], stockValues[3]);
 
         // Move stock item inside stock list
         newStock.transform.SetParent(stockList.transform);
@@ -89,18 +103,52 @@ public class Current_Investments : MonoBehaviour
         // Close menus
         Cancel();
     }
-    public void Edit()
+    public void Edit(string code, string name, string quantity, string value)
     {
         editMenu.SetActive(true);
+
+        // Fill input with previous values
+        editCode.GetComponent<TMP_InputField>().text = code;
+        editName.GetComponent<TMP_InputField>().text = name;
+        editQuantity.GetComponent<TMP_InputField>().text = quantity;
+        editValue.GetComponent<TMP_InputField>().text = value;
     }
 
     public void Save()
     {
-        editMenu.SetActive(false);
+        // Get input values
+        string code = editCode.GetComponent<TMP_InputField>().text;
+        string name = editName.GetComponent<TMP_InputField>().text;
+        string quantity = editQuantity.GetComponent<TMP_InputField>().text;
+        string value = editValue.GetComponent<TMP_InputField>().text;
+
+        // Validate values
+        if (utilities.IsStockInvalid(code, name, quantity, value))
+        {
+            Cancel();
+            return;
+        }
+
+        // Fix values
+        string[] stockValues = utilities.FixStock(code, name, quantity, value);
+
+        // Get active stock
+        GameObject stock;
+        stock = GameObject.FindWithTag("Active Stock");
+
+        // Change values with user input
+        stock.GetComponent<Stock>().SetStock(stockValues[0], stockValues[1], stockValues[2], stockValues[3]);
+
+        // Desactivate stock
+        stock.tag = "Untagged";
+
+        // Close menus
+        Cancel();
     }
 
     public void Delete()
     {
-        editMenu.SetActive(false);
+        // Close menus
+        Cancel();
     }
 }

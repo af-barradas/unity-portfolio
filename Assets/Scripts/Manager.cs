@@ -13,6 +13,10 @@ public class Manager : MonoBehaviour
     public GameObject newName;
     public GameObject newQuantity;
     public GameObject newValue;
+    public GameObject editCode;
+    public GameObject editName;
+    public GameObject editQuantity;
+    public GameObject editValue;
 
     [Header("Stocks")]
     public GameObject stockList;

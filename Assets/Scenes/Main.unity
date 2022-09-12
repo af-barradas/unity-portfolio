@@ -1273,6 +1273,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300076490}
   m_CullTransparentMesh: 1
+--- !u!1 &359618077 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3068813029713533501, guid: 6ae6dc73e1ab8134a93629ec0b34136b, type: 3}
+  m_PrefabInstance: {fileID: 1533292837}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &362603278
 GameObject:
   m_ObjectHideFlags: 0
@@ -4494,6 +4499,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067227562}
   m_CullTransparentMesh: 1
+--- !u!1 &1073020025 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3068813029713533501, guid: 6ae6dc73e1ab8134a93629ec0b34136b, type: 3}
+  m_PrefabInstance: {fileID: 296988614}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1082013007
 GameObject:
   m_ObjectHideFlags: 0
@@ -4708,6 +4718,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1103640339}
   m_CullTransparentMesh: 1
+--- !u!1 &1112909889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3068813029713533501, guid: 6ae6dc73e1ab8134a93629ec0b34136b, type: 3}
+  m_PrefabInstance: {fileID: 1468685272}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1119723991
 GameObject:
   m_ObjectHideFlags: 0
@@ -4886,8 +4901,13 @@ MonoBehaviour:
   newName: {fileID: 943952148}
   newQuantity: {fileID: 1448881134}
   newValue: {fileID: 105263440}
+  editCode: {fileID: 1073020025}
+  editName: {fileID: 359618077}
+  editQuantity: {fileID: 1112909889}
+  editValue: {fileID: 1829742011}
   stockList: {fileID: 1504037556}
   stockItem: {fileID: 4645616318664757597, guid: d4a66bd01fac862468a857eb6aa7cb41, type: 3}
+  stocks: []
 --- !u!114 &1178465010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7354,6 +7374,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813979113}
   m_CullTransparentMesh: 1
+--- !u!1 &1829742011 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3068813029713533501, guid: 6ae6dc73e1ab8134a93629ec0b34136b, type: 3}
+  m_PrefabInstance: {fileID: 1049637261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1838533621
 GameObject:
   m_ObjectHideFlags: 0

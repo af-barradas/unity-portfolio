@@ -50,12 +50,13 @@ public class Stock : MonoBehaviour
         this.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = code;
         this.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = name;
         this.transform.GetChild(1).transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = quantity;
-        this.transform.GetChild(1).transform.GetChild(2).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = value;
+        this.transform.GetChild(1).transform.GetChild(2).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = value + "€";
     }
 
     // Use edit
     public void Edit()
     {
-        manager.GetComponent<Current_Investments>().Edit();
+        this.tag = "Active Stock";
+        manager.GetComponent<Current_Investments>().Edit(GetCode(), GetName(), GetQuantity(), GetValue());
     }
 }
