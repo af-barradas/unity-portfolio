@@ -52,21 +52,45 @@ public class Current_Investments : MonoBehaviour
 
     public void Add()
     {
+        // Clean values
+        string tmpCode = newCode.GetComponent<TMP_InputField>().text.ToUpper();
+        string[] _name = newName.GetComponent<TMP_InputField>().text.Split(" ");
+        string tmpName = "";
+        for (int i = 0; i < _name.Length; i++)
+        {
+            // Check double space
+            if (_name[i].Length < 1)
+            {
+                continue;
+            }
+
+            tmpName += (char.ToUpper(_name[i][0]) + _name[i].Substring(1) + " ");
+        }
+        string tmpQuantity = newQuantity.GetComponent<TMP_InputField>().text;
+        string tmpValue = newValue.GetComponent<TMP_InputField>().text;
+
+        // Validate values
+        int number;
+        if (tmpCode.Length > 10 || tmpName.Length > 30 || !int.TryParse(tmpQuantity, out number) || !int.TryParse(tmpValue, out number))
+        {
+            Cancel();
+            return;
+        }
+
         // Create new stock item
         GameObject newStock = Instantiate(stockItem, stockList.transform);
 
         // Change values with user input
-        newStock.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = newCode.GetComponent<TMP_InputField>().text;
-        newStock.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = newName.GetComponent<TMP_InputField>().text;
-        newStock.transform.GetChild(1).transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = newQuantity.GetComponent<TMP_InputField>().text;
-        newStock.transform.GetChild(1).transform.GetChild(2).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = newValue.GetComponent<TMP_InputField>().text;
+        newStock.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = tmpCode;
+        newStock.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = tmpName;
+        newStock.transform.GetChild(1).transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = tmpQuantity;
+        newStock.transform.GetChild(1).transform.GetChild(2).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = tmpValue + "€";
 
         // Move stock item inside stock list
         newStock.transform.SetParent(stockList.transform);
 
         // Close menus
-        newMenu.SetActive(false);
-        //editMenu.SetActive(false);
+        Cancel();
     }
     public void Edit()
     {
