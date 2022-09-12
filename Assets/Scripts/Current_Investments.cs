@@ -7,8 +7,8 @@ using TMPro;
 public class Current_Investments : MonoBehaviour
 {
     [Header("Manager")]
-    [SerializeField]
     private Manager manager;
+    private Utilities utilities;
 
     [Header("Menus")]
     private GameObject newMenu;
@@ -28,6 +28,7 @@ public class Current_Investments : MonoBehaviour
     void Start()
     {
         manager = this.GetComponent<Manager>();
+        utilities = this.GetComponent<Utilities>();
 
         newMenu = manager.newMenu;
         editMenu = manager.editMenu;
@@ -60,39 +61,28 @@ public class Current_Investments : MonoBehaviour
 
     public void Add()
     {
-        // Clean values
-        string tmpCode = newCode.GetComponent<TMP_InputField>().text.ToUpper();
-        string[] _name = newName.GetComponent<TMP_InputField>().text.Split(" ");
-        string tmpName = "";
-        for (int i = 0; i < _name.Length; i++)
-        {
-            // Check double space
-            if (_name[i].Length < 1)
-            {
-                continue;
-            }
-
-            tmpName += (char.ToUpper(_name[i][0]) + _name[i].Substring(1) + " ");
-        }
-        string tmpQuantity = newQuantity.GetComponent<TMP_InputField>().text;
-        string tmpValue = newValue.GetComponent<TMP_InputField>().text;
+        // Get input values
+        string code = newCode.GetComponent<TMP_InputField>().text;
+        string name = newName.GetComponent<TMP_InputField>().text;
+        string quantity = newQuantity.GetComponent<TMP_InputField>().text;
+        string value = newValue.GetComponent<TMP_InputField>().text;
 
         // Validate values
-        int number;
-        if (tmpCode.Length > 10 || tmpName.Length > 30 || !int.TryParse(tmpQuantity, out number) || !int.TryParse(tmpValue, out number))
+        if (utilities.isStockInvalid(code, name, quantity, value))
         {
             Cancel();
             return;
         }
 
+        // Fix values
+        string[] stock = utilities.fixStock(code, name, quantity, value);
+        Debug.Log(stock[0]);
+
         // Create new stock item
         GameObject newStock = Instantiate(stockItem, stockList.transform);
 
         // Change values with user input
-        newStock.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = tmpCode;
-        newStock.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = tmpName;
-        newStock.transform.GetChild(1).transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = tmpQuantity;
-        newStock.transform.GetChild(1).transform.GetChild(2).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = tmpValue + "€";
+        newStock.GetComponent<Stock>().setStock(stock[0], stock[1], stock[2], stock[3]);
 
         // Move stock item inside stock list
         newStock.transform.SetParent(stockList.transform);
