@@ -111,7 +111,7 @@ public class Current_Investments : MonoBehaviour
         editCode.GetComponent<TMP_InputField>().text = code;
         editName.GetComponent<TMP_InputField>().text = name;
         editQuantity.GetComponent<TMP_InputField>().text = quantity;
-        editValue.GetComponent<TMP_InputField>().text = value;
+        editValue.GetComponent<TMP_InputField>().text = value.Remove(value.Length - 1);
     }
 
     public void Save()

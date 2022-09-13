@@ -33,7 +33,7 @@ public class Manager : MonoBehaviour
         GameObject newStock = Instantiate(stockItem, stockList.transform);
 
         // Change values with user input
-        newStock.GetComponent<Stock>().SetStock("QDVE", "QDVE.DE", "42", "760");
+        newStock.GetComponent<Stock>().SetStock("QDVE", "QDVE.DE", "42", "760€");
 
         // Add to Llist
         stocks.Add(newStock.GetComponent<Stock>());
