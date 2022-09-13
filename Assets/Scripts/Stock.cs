@@ -19,6 +19,12 @@ public class Stock : MonoBehaviour
         manager = GameObject.FindWithTag("Manager");
     }
 
+    // Delete stock
+    public void Delete()
+    {
+        Destroy(gameObject);
+    }
+
     // Get code value
     public string GetCode()
     {

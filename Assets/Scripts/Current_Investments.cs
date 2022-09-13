@@ -60,6 +60,7 @@ public class Current_Investments : MonoBehaviour
         // Validate values
         if (utilities.IsStockInvalid(code, name, quantity, unitValue))
         {
+            // Close menus
             Cancel();
             return;
         }
@@ -67,21 +68,44 @@ public class Current_Investments : MonoBehaviour
         // Get transaction value
         string value = System.Math.Round((decimal.Parse(unitValue) * decimal.Parse(quantity)), 2).ToString();
 
-        // Update total value
-        decimal current = decimal.Parse(manager.current.GetComponent<TextMeshProUGUI>().text.Remove(manager.current.GetComponent<TextMeshProUGUI>().text.Length - 1));
-        current += System.Math.Round(decimal.Parse(value), 2);
-        manager.current.GetComponent<TextMeshProUGUI>().text = current + "€";
-
         // Fix values
         string[] stockValues = utilities.FixStock(code, name, quantity, value);
 
         // Check if code already exists
         int index = utilities.CheckCode(stockValues[0]);
+
+        if (index != -1)
+        {
+            // If no quantity left, delete stock
+            if ((System.Math.Round(decimal.Parse(quantity), 2) + manager.stocks[index].GetQuantity()) <= 0)
+            {
+                // Delete stock
+                Delete(index);
+                return;
+            }
+
+            // Can not subtract more than the current value
+            if ((System.Math.Round(decimal.Parse(value), 2) + manager.stocks[index].GetValue()) <= 0)
+            {
+                value = (-manager.stocks[index].GetValue()).ToString();
+                stockValues[3] = value + "€";
+            }
+        }
+
+        // Update total value
+        decimal current = decimal.Parse(manager.current.GetComponent<TextMeshProUGUI>().text.Remove(manager.current.GetComponent<TextMeshProUGUI>().text.Length - 1));
+        current += System.Math.Round(decimal.Parse(value), 2);
+        manager.current.GetComponent<TextMeshProUGUI>().text = current + "€";
+
         if (index != -1)
         {
             // Update existing stock
             utilities.UpdateStock(index, stockValues[2], stockValues[3]);
 
+            // Fix percentage
+            utilities.FixPercentage(current);
+
+            // Close menus
             Cancel();
             return;
         }
@@ -127,6 +151,7 @@ public class Current_Investments : MonoBehaviour
         // Validate values
         if (utilities.IsStockInvalid(code, name, quantity, unitValue))
         {
+            // Close menus
             Cancel();
             return;
         }
@@ -158,6 +183,41 @@ public class Current_Investments : MonoBehaviour
 
     public void Delete()
     {
+        // Get active stock
+        GameObject stock;
+        stock = GameObject.FindWithTag("Active Stock");
+
+        // Update total value
+        decimal current = decimal.Parse(manager.current.GetComponent<TextMeshProUGUI>().text.Remove(manager.current.GetComponent<TextMeshProUGUI>().text.Length - 1));
+        current -= stock.GetComponent<Stock>().GetValue();
+        manager.current.GetComponent<TextMeshProUGUI>().text = current + "€";
+
+        // Get stock index
+        int index = utilities.CheckCode(stock.GetComponent<Stock>().GetCode());
+
+        // Delete stock
+        manager.stocks[index].Delete();
+
+        // Remove stock
+        manager.stocks.RemoveAt(index);
+
+        // Close menus
+        Cancel();
+    }
+
+    public void Delete(int index)
+    {
+        // Update total value
+        decimal current = decimal.Parse(manager.current.GetComponent<TextMeshProUGUI>().text.Remove(manager.current.GetComponent<TextMeshProUGUI>().text.Length - 1));
+        current -= manager.stocks[index].GetComponent<Stock>().GetValue();
+        manager.current.GetComponent<TextMeshProUGUI>().text = current + "€";
+
+        // Delete stock
+        manager.stocks[index].Delete();
+
+        // Remove stock
+        manager.stocks.RemoveAt(index);
+
         // Close menus
         Cancel();
     }
