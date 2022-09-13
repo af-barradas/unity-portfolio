@@ -201,6 +201,9 @@ public class Current_Investments : MonoBehaviour
         // Remove stock
         manager.stocks.RemoveAt(index);
 
+        // Fix percentage
+        utilities.FixPercentage(current);
+
         // Close menus
         Cancel();
     }
@@ -217,6 +220,9 @@ public class Current_Investments : MonoBehaviour
 
         // Remove stock
         manager.stocks.RemoveAt(index);
+
+        // Fix percentage
+        utilities.FixPercentage(current);
 
         // Close menus
         Cancel();
