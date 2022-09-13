@@ -49,6 +49,12 @@ public class Utilities : MonoBehaviour
     // Fix percentage
     public void FixPercentage(decimal current)
     {
+        if (current <= 0)
+        {
+            manager.stocks.ForEach((stock) => { stock.SetPercentage(System.Math.Round(decimal.Zero, 2)); });
+            return;
+        }
+
         manager.stocks.ForEach((stock) => { stock.SetPercentage(System.Math.Round((stock.GetValue() / current * 100), 2)); });
     }
 
