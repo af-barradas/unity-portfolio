@@ -15,9 +15,9 @@ public class Utilities : MonoBehaviour
     // Validate values
     public bool IsStockInvalid(string code, string name, string quantity, string value)
     {
-        int a;
+        decimal a;
         decimal b;
-        if (code.Length > 10 || name.Length > 30 || !int.TryParse(quantity, out a) || !decimal.TryParse(value, out b))
+        if (code.Length > 10 || name.Length > 30 || !decimal.TryParse(quantity, out a) || !decimal.TryParse(value, out b))
         {
             return true;
         }
@@ -40,7 +40,7 @@ public class Utilities : MonoBehaviour
 
             tmpName += (char.ToUpper(_name[i][0]) + _name[i].Substring(1) + " ");
         }
-        string tmpQuantity = quantity;
+        string tmpQuantity = System.Math.Round(decimal.Parse(quantity), 2).ToString();
         string tmpValue = System.Math.Round(decimal.Parse(value), 2).ToString() + "€";
 
         return new[] { tmpCode, tmpName, tmpQuantity, tmpValue };
@@ -51,4 +51,27 @@ public class Utilities : MonoBehaviour
     {
         manager.stocks.ForEach((stock) => { stock.SetPercentage(System.Math.Round((stock.GetValue() / current * 100), 2)); });
     }
+
+    public int CheckCode(string code)
+    {
+        int index = -1;
+
+        for (var i = 0; i < manager.stocks.Count; i++)
+        {
+            if (manager.stocks[i].GetCode() == code)
+            {
+                index = i;
+                return index;
+            }
+        }
+
+        return index;
+    }
+
+    public void UpdateStock(int index, string quantity, string value)
+    {
+        manager.stocks[index].AddValues(decimal.Parse(quantity), decimal.Parse(value.Remove(value.Length - 1)));
+    }
+
+
 }

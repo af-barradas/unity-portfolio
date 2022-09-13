@@ -30,9 +30,9 @@ public class Stock : MonoBehaviour
         return name;
     }
 
-    public int GetQuantity()
+    public decimal GetQuantity()
     {
-        return int.Parse(quantity);
+        return decimal.Parse(quantity);
     }
 
     public decimal GetValue()
@@ -59,6 +59,12 @@ public class Stock : MonoBehaviour
         this.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = this.name;
         this.transform.GetChild(1).transform.GetChild(1).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = this.quantity;
         this.transform.GetChild(1).transform.GetChild(2).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = this.value;
+    }
+
+    // Add quantity and value
+    public void AddValues(decimal quantity, decimal value)
+    {
+        SetStock(this.code, this.name, (decimal.Parse(this.quantity) + quantity).ToString(), (decimal.Parse(this.value.Remove(this.value.Length - 1)) + value).ToString() + "€");
     }
 
     // Use edit

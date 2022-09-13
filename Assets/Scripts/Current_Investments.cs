@@ -18,6 +18,17 @@ public class Current_Investments : MonoBehaviour
 
     public void Cancel()
     {
+        // Get active stock
+        GameObject stock;
+        stock = GameObject.FindWithTag("Active Stock");
+
+        // Check if any is active
+        if (stock != null)
+        {
+            // Desactivate stock
+            stock.tag = "Untagged";
+        }
+
         // Clean inputs
         manager.newCode.GetComponent<TMP_InputField>().text = "";
         manager.newName.GetComponent<TMP_InputField>().text = "";
@@ -44,14 +55,17 @@ public class Current_Investments : MonoBehaviour
         string code = manager.newCode.GetComponent<TMP_InputField>().text;
         string name = manager.newName.GetComponent<TMP_InputField>().text;
         string quantity = manager.newQuantity.GetComponent<TMP_InputField>().text;
-        string value = manager.newValue.GetComponent<TMP_InputField>().text;
+        string unitValue = manager.newValue.GetComponent<TMP_InputField>().text;
 
         // Validate values
-        if (utilities.IsStockInvalid(code, name, quantity, value))
+        if (utilities.IsStockInvalid(code, name, quantity, unitValue))
         {
             Cancel();
             return;
         }
+
+        // Get transaction value
+        string value = System.Math.Round((decimal.Parse(unitValue) * decimal.Parse(quantity)), 2).ToString();
 
         // Update total value
         decimal current = decimal.Parse(manager.current.GetComponent<TextMeshProUGUI>().text.Remove(manager.current.GetComponent<TextMeshProUGUI>().text.Length - 1));
@@ -60,6 +74,17 @@ public class Current_Investments : MonoBehaviour
 
         // Fix values
         string[] stockValues = utilities.FixStock(code, name, quantity, value);
+
+        // Check if code already exists
+        int index = utilities.CheckCode(stockValues[0]);
+        if (index != -1)
+        {
+            // Update existing stock
+            utilities.UpdateStock(index, stockValues[2], stockValues[3]);
+
+            Cancel();
+            return;
+        }
 
         // Create new stock item
         GameObject newStock = Instantiate(manager.stockItem, manager.stockList.transform);
@@ -79,7 +104,8 @@ public class Current_Investments : MonoBehaviour
         // Close menus
         Cancel();
     }
-    public void Edit(string code, string name, int quantity, decimal value)
+
+    public void Edit(string code, string name, decimal quantity, decimal value)
     {
         manager.editMenu.SetActive(true);
 
@@ -87,7 +113,7 @@ public class Current_Investments : MonoBehaviour
         manager.editCode.GetComponent<TMP_InputField>().text = code;
         manager.editName.GetComponent<TMP_InputField>().text = name;
         manager.editQuantity.GetComponent<TMP_InputField>().text = quantity.ToString();
-        manager.editValue.GetComponent<TMP_InputField>().text = value.ToString();
+        manager.editValue.GetComponent<TMP_InputField>().text = System.Math.Round((value / quantity), 2).ToString();
     }
 
     public void Save()
@@ -96,14 +122,17 @@ public class Current_Investments : MonoBehaviour
         string code = manager.editCode.GetComponent<TMP_InputField>().text;
         string name = manager.editName.GetComponent<TMP_InputField>().text;
         string quantity = manager.editQuantity.GetComponent<TMP_InputField>().text;
-        string value = manager.editValue.GetComponent<TMP_InputField>().text;
+        string unitValue = manager.editValue.GetComponent<TMP_InputField>().text;
 
         // Validate values
-        if (utilities.IsStockInvalid(code, name, quantity, value))
+        if (utilities.IsStockInvalid(code, name, quantity, unitValue))
         {
             Cancel();
             return;
         }
+
+        // Get transaction value
+        string value = System.Math.Round((decimal.Parse(unitValue) * decimal.Parse(quantity)), 2).ToString();
 
         // Get active stock
         GameObject stock;
@@ -119,9 +148,6 @@ public class Current_Investments : MonoBehaviour
 
         // Change values with user input
         stock.GetComponent<Stock>().SetStock(stockValues[0], stockValues[1], stockValues[2], stockValues[3]);
-
-        // Desactivate stock
-        stock.tag = "Untagged";
 
         // Fix percentage
         utilities.FixPercentage(current);

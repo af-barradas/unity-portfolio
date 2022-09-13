@@ -2542,7 +2542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3068813029410299368, guid: 6ae6dc73e1ab8134a93629ec0b34136b, type: 3}
       propertyPath: m_text
-      value: VALUE
+      value: UNIT VALUE
       objectReference: {fileID: 0}
     - target: {fileID: 3068813029713533503, guid: 6ae6dc73e1ab8134a93629ec0b34136b, type: 3}
       propertyPath: m_ContentType
@@ -3534,7 +3534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3068813029410299368, guid: 6ae6dc73e1ab8134a93629ec0b34136b, type: 3}
       propertyPath: m_text
-      value: VALUE
+      value: UNIT VALUE
       objectReference: {fileID: 0}
     - target: {fileID: 3068813029713533503, guid: 6ae6dc73e1ab8134a93629ec0b34136b, type: 3}
       propertyPath: m_ContentType
@@ -5250,15 +5250,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3068813029713533503, guid: 6ae6dc73e1ab8134a93629ec0b34136b, type: 3}
       propertyPath: m_ContentType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3068813029713533503, guid: 6ae6dc73e1ab8134a93629ec0b34136b, type: 3}
       propertyPath: m_KeyboardType
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3068813029713533503, guid: 6ae6dc73e1ab8134a93629ec0b34136b, type: 3}
       propertyPath: m_CharacterValidation
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ae6dc73e1ab8134a93629ec0b34136b, type: 3}
@@ -5960,15 +5960,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3068813029713533503, guid: 6ae6dc73e1ab8134a93629ec0b34136b, type: 3}
       propertyPath: m_ContentType
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3068813029713533503, guid: 6ae6dc73e1ab8134a93629ec0b34136b, type: 3}
       propertyPath: m_KeyboardType
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3068813029713533503, guid: 6ae6dc73e1ab8134a93629ec0b34136b, type: 3}
       propertyPath: m_CharacterValidation
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ae6dc73e1ab8134a93629ec0b34136b, type: 3}
