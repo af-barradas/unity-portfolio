@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Globalization;
+using System.Threading;
 
 public class Manager : MonoBehaviour
 {
@@ -31,6 +33,9 @@ public class Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Change decimal separator to "."
+        Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
         // Initialize list
         stocks = new List<Stock>();
 
