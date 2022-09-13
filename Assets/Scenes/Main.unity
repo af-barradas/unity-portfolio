@@ -3975,7 +3975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1149307115}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Current Investments
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4061,6 +4061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb2c5fffa4c3ae46b21b1106dcee42c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  current: {fileID: 362603278}
   newMenu: {fileID: 552182646}
   editMenu: {fileID: 756328041}
   newCode: {fileID: 1685945684}

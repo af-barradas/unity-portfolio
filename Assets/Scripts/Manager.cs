@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
+    [Header("Tops")]
+    public GameObject current;
+
     [Header("Menus")]
     public GameObject newMenu;
     public GameObject editMenu;
 
-    [Header("Menu's Texts")]
+    [Header("New Menu")]
     public GameObject newCode;
     public GameObject newName;
     public GameObject newQuantity;
     public GameObject newValue;
+
+    [Header("Edit Menu")]
     public GameObject editCode;
     public GameObject editName;
     public GameObject editQuantity;
@@ -29,7 +34,7 @@ public class Manager : MonoBehaviour
         // Initialize list
         stocks = new List<Stock>();
 
-        // Create new stock item
+        /* // Create new stock item
         GameObject newStock = Instantiate(stockItem, stockList.transform);
 
         // Change values with user input
@@ -39,7 +44,7 @@ public class Manager : MonoBehaviour
         stocks.Add(newStock.GetComponent<Stock>());
 
         // Move stock item inside stock list
-        newStock.transform.SetParent(stockList.transform);
+        newStock.transform.SetParent(stockList.transform); */
     }
 
     // Update is called once per frame
