@@ -11,6 +11,7 @@ public class Stock : MonoBehaviour
     public string name;
     public string quantity;
     public string value;
+    public string percentage;
 
     // Start is called before the first frame update
     void Start()
@@ -29,14 +30,20 @@ public class Stock : MonoBehaviour
         return name;
     }
 
-    public string GetQuantity()
+    public int GetQuantity()
     {
-        return quantity;
+        return int.Parse(quantity);
     }
 
-    public string GetValue()
+    public decimal GetValue()
     {
-        return value;
+        return decimal.Parse(value.Remove(value.Length - 1));
+    }
+
+    public void SetPercentage(decimal percentage)
+    {
+        this.percentage = percentage.ToString() + "%";
+        this.transform.GetChild(1).transform.GetChild(3).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = this.percentage;
     }
 
     // Set stock values
@@ -46,6 +53,7 @@ public class Stock : MonoBehaviour
         this.name = name;
         this.quantity = quantity;
         this.value = value;
+        this.percentage = "0%";
 
         this.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = this.code;
         this.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = this.name;

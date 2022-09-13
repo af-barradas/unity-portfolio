@@ -54,8 +54,8 @@ public class Current_Investments : MonoBehaviour
         }
 
         // Update total value
-        int current = int.Parse(manager.current.GetComponent<TextMeshProUGUI>().text.Remove(manager.current.GetComponent<TextMeshProUGUI>().text.Length - 1));
-        current += int.Parse(value);
+        decimal current = decimal.Parse(manager.current.GetComponent<TextMeshProUGUI>().text.Remove(manager.current.GetComponent<TextMeshProUGUI>().text.Length - 1));
+        current += System.Math.Round(decimal.Parse(value), 2);
         manager.current.GetComponent<TextMeshProUGUI>().text = current + "€";
 
         // Fix values
@@ -70,18 +70,24 @@ public class Current_Investments : MonoBehaviour
         // Move stock item inside stock list
         newStock.transform.SetParent(manager.stockList.transform);
 
+        // Add to list
+        manager.stocks.Add(newStock.GetComponent<Stock>());
+
+        // Fix percentage
+        utilities.FixPercentage(current);
+
         // Close menus
         Cancel();
     }
-    public void Edit(string code, string name, string quantity, string value)
+    public void Edit(string code, string name, int quantity, decimal value)
     {
         manager.editMenu.SetActive(true);
 
         // Fill input with previous values
         manager.editCode.GetComponent<TMP_InputField>().text = code;
         manager.editName.GetComponent<TMP_InputField>().text = name;
-        manager.editQuantity.GetComponent<TMP_InputField>().text = quantity;
-        manager.editValue.GetComponent<TMP_InputField>().text = value.Remove(value.Length - 1);
+        manager.editQuantity.GetComponent<TMP_InputField>().text = quantity.ToString();
+        manager.editValue.GetComponent<TMP_InputField>().text = value.ToString();
     }
 
     public void Save()
@@ -104,8 +110,8 @@ public class Current_Investments : MonoBehaviour
         stock = GameObject.FindWithTag("Active Stock");
 
         // Update total value
-        int current = int.Parse(manager.current.GetComponent<TextMeshProUGUI>().text.Remove(manager.current.GetComponent<TextMeshProUGUI>().text.Length - 1));
-        current += int.Parse(value) - int.Parse(stock.GetComponent<Stock>().GetValue().Remove(stock.GetComponent<Stock>().GetValue().Length - 1));
+        decimal current = decimal.Parse(manager.current.GetComponent<TextMeshProUGUI>().text.Remove(manager.current.GetComponent<TextMeshProUGUI>().text.Length - 1));
+        current += decimal.Parse(value) - stock.GetComponent<Stock>().GetValue();
         manager.current.GetComponent<TextMeshProUGUI>().text = current + "€";
 
         // Fix values
@@ -116,6 +122,9 @@ public class Current_Investments : MonoBehaviour
 
         // Desactivate stock
         stock.tag = "Untagged";
+
+        // Fix percentage
+        utilities.FixPercentage(current);
 
         // Close menus
         Cancel();

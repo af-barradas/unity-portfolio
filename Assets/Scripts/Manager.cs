@@ -40,7 +40,7 @@ public class Manager : MonoBehaviour
         // Change values with user input
         newStock.GetComponent<Stock>().SetStock("QDVE", "QDVE.DE", "42", "760€");
 
-        // Add to Llist
+        // Add to list
         stocks.Add(newStock.GetComponent<Stock>());
 
         // Move stock item inside stock list
@@ -48,8 +48,8 @@ public class Manager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    /* void Update()
     {
 
-    }
+    } */
 }
