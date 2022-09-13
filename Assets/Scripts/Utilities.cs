@@ -21,6 +21,10 @@ public class Utilities : MonoBehaviour
         {
             return true;
         }
+        if (b <= 0)
+        {
+            return true;
+        }
         return false;
     }
 

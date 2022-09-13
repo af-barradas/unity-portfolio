@@ -74,6 +74,14 @@ public class Current_Investments : MonoBehaviour
         // Check if code already exists
         int index = utilities.CheckCode(stockValues[0]);
 
+        // Check if first entry with negative quantity
+        if (index == -1 && decimal.Parse(quantity) <= 0)
+        {
+            // Close menus
+            Cancel();
+            return;
+        }
+
         if (index != -1)
         {
             // If no quantity left, delete stock
