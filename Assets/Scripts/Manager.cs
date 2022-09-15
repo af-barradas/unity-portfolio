@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Globalization;
 using System.Threading;
 
-public class Manager : MonoBehaviour
+public class Manager : MonoBehaviour, IData_Manager
 {
     [Header("Tops")]
     public GameObject current;
@@ -28,6 +28,8 @@ public class Manager : MonoBehaviour
     [Header("Stocks")]
     public GameObject stockList;
     public GameObject stockItem;
+
+    [Header("Data")]
     public List<Stock> stocks;
 
     // Start is called before the first frame update
@@ -57,4 +59,14 @@ public class Manager : MonoBehaviour
     {
 
     } */
+
+    public void LoadData(Data data)
+    {
+        this.stocks = data.stocks;
+    }
+
+    public void SaveData(ref Data data)
+    {
+        data.stocks = this.stocks;
+    }
 }
