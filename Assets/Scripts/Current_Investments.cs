@@ -128,7 +128,7 @@ public class Current_Investments : MonoBehaviour
         newStock.transform.SetParent(manager.stockList.transform);
 
         // Add to list
-        manager.stocks.Add(newStock.GetComponent<Stock>());
+        manager.Add(newStock.GetComponent<Stock>());
 
         // Fix percentage
         utilities.FixPercentage(current);

@@ -7,6 +7,14 @@ public class StockData
 {
     public string code;
     public string name;
-    public decimal quantity;
-    public decimal value;
+    public string quantity;
+    public string value;
+
+    public StockData()
+    {
+        code = "";
+        name = "";
+        quantity = "";
+        value = "";
+    }
 }

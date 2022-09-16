@@ -28,22 +28,22 @@ public class Stock : MonoBehaviour
     // Get code value
     public string GetCode()
     {
-        return code;
+        return this.code;
     }
 
     public string GetName()
     {
-        return name;
+        return this.name;
     }
 
     public decimal GetQuantity()
     {
-        return decimal.Parse(quantity);
+        return decimal.Parse(this.quantity);
     }
 
     public decimal GetValue()
     {
-        return decimal.Parse(value.Remove(value.Length - 1));
+        return decimal.Parse(this.value.Remove(this.value.Length - 1));
     }
 
     public void SetPercentage(decimal percentage)
