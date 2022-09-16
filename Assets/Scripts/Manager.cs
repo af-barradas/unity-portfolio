@@ -49,6 +49,7 @@ public class Manager : MonoBehaviour, IData_Manager
         // Initialize data list
         data = new List<StockData>();
 
+        // Initialize utilities
         utilities = this.GetComponent<Utilities>();
     }
 

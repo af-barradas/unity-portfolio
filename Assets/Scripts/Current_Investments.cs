@@ -133,6 +133,9 @@ public class Current_Investments : MonoBehaviour
         // Fix percentage
         utilities.FixPercentage(current);
 
+        // Save data
+        Data_Manager.instance.SaveData();
+
         // Close menus
         Cancel();
     }
@@ -185,6 +188,9 @@ public class Current_Investments : MonoBehaviour
         // Fix percentage
         utilities.FixPercentage(current);
 
+        // Save data
+        Data_Manager.instance.SaveData();
+
         // Close menus
         Cancel();
     }
@@ -212,6 +218,9 @@ public class Current_Investments : MonoBehaviour
         // Fix percentage
         utilities.FixPercentage(current);
 
+        // Save data
+        Data_Manager.instance.SaveData();
+
         // Close menus
         Cancel();
     }
@@ -231,6 +240,9 @@ public class Current_Investments : MonoBehaviour
 
         // Fix percentage
         utilities.FixPercentage(current);
+
+        // Save data
+        Data_Manager.instance.SaveData();
 
         // Close menus
         Cancel();
