@@ -72,6 +72,20 @@ public class Manager : MonoBehaviour, IData_Manager
         this.data.Add(data);
     }
 
+    public void Edit(int index)
+    {
+        this.data[index].code = stocks[index].GetCode();
+        this.data[index].name = stocks[index].GetName();
+        this.data[index].quantity = stocks[index].GetQuantity().ToString();
+        this.data[index].value = stocks[index].GetValue().ToString() + "€";
+    }
+
+    public void Delete(int index)
+    {
+        this.stocks.RemoveAt(index);
+        this.data.RemoveAt(index);
+    }
+
     public void LoadData(Data data)
     {
         this.data = data.stocks;

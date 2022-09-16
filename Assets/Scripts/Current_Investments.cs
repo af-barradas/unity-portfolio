@@ -190,6 +190,12 @@ public class Current_Investments : MonoBehaviour
         // Fix percentage
         utilities.FixPercentage(current);
 
+        // Get stock index
+        int index = utilities.CheckCode(stock.GetComponent<Stock>().GetCode());
+
+        // Update data
+        manager.Edit(index);
+
         // Save data
         dataManager.SaveData();
 
@@ -215,7 +221,7 @@ public class Current_Investments : MonoBehaviour
         manager.stocks[index].Delete();
 
         // Remove stock
-        manager.stocks.RemoveAt(index);
+        manager.Delete(index);
 
         // Fix percentage
         utilities.FixPercentage(current);
@@ -238,7 +244,7 @@ public class Current_Investments : MonoBehaviour
         manager.stocks[index].Delete();
 
         // Remove stock
-        manager.stocks.RemoveAt(index);
+        manager.Delete(index);
 
         // Fix percentage
         utilities.FixPercentage(current);
