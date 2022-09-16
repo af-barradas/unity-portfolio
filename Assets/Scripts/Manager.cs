@@ -54,10 +54,13 @@ public class Manager : MonoBehaviour, IData_Manager
     }
 
     // Update is called once per frame
-    /* void Update()
+    void Update()
     {
-
-    } */
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
 
     public void Add(Stock stock)
     {
