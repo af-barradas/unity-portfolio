@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Threading;
 using TMPro;
 
-public class Manager : MonoBehaviour, IData_Manager
+public class Current_Manager : MonoBehaviour, IData_Manager
 {
     [Header("Tops")]
     public GameObject current;

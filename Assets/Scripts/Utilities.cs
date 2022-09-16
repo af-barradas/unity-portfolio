@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Utilities : MonoBehaviour
 {
-    private Manager manager;
+    private Current_Manager manager;
 
     // Start is called before the first frame update
     void Start()
     {
-        manager = this.GetComponent<Manager>();
+        manager = this.GetComponent<Current_Manager>();
     }
 
     // Validate values

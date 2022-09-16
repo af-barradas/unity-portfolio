@@ -6,14 +6,14 @@ using TMPro;
 
 public class Current_Investments : MonoBehaviour
 {
-    private Manager manager;
+    private Current_Manager manager;
     private Data_Manager dataManager;
     private Utilities utilities;
 
     // Start is called before the first frame update
     void Start()
     {
-        manager = this.GetComponent<Manager>();
+        manager = this.GetComponent<Current_Manager>();
         dataManager = this.GetComponent<Data_Manager>();
         utilities = this.GetComponent<Utilities>();
     }
