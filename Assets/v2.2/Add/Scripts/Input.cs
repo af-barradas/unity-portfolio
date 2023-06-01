@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
-using Newtonsoft.Json.Linq;
 
 public class Input : MonoBehaviour
 {
@@ -28,7 +27,7 @@ public class Input : MonoBehaviour
     [SerializeField] private TMP_InputField symbolInput;
     [SerializeField] private TMP_Dropdown marketInput;
 
-    [Header("Variables")]
+    /* [Header("Variables")]
     private bool isBuying;
     private bool checkDate;
     private bool checkTicker;
@@ -86,26 +85,5 @@ public class Input : MonoBehaviour
 
         info.SetDateCheck("Date: " + yearInput.text + "/" + monthInput.text + "/" + dayInput.text);
         checkDate = true;
-    }
-
-    async public void CheckTicker()
-    {
-        string symbol = symbolInput.text.ToUpper();
-
-        if (marketInput.value != 0) { symbol += "." + marketInput.options[marketInput.value].text.ToUpper(); }
-
-        JObject response = await manager.apiRequest("SYMBOL_SEARCH&datatype=json&keywords=" + symbol);
-
-        // Ver se user escreveu algo
-        if (response["bestMatches"] == null) { return; }
-
-        // Ver se existe
-        if (response["bestMatches"].First == null) { info.SetTickerWarning("This ticker symbol is not valid"); checkTicker = false; return; }
-
-        // Ver se dá 100% de nome
-        if (response["bestMatches"].First["9. matchScore"].ToString() != "1.0000") { info.SetTickerWarning("This ticker symbol is not valid"); checkTicker = false; return; }
-
-        info.SetTickerCheck("Name: " + response["bestMatches"].First["2. name"]);
-        checkTicker = true;
-    }
+    } */
 }

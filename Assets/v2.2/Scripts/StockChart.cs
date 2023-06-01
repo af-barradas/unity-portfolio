@@ -4,17 +4,49 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Threading.Tasks;
+using System.IO;
 
 public class StockChart : MonoBehaviour
 {
-    // Place holder values for testing purposes
+    public ExpenseTypeList expenseTypeList1;
+    public ExpenseType[] expenseTypeList2;
     float[] percentages = new float[] { 58.65f, 32.14f, 9.21f };
+    
     public GameObject chartPieces;
     public Image chartPiecePrefab;
+
+    void CreateJson() {
+        ExpenseType expenseType1 = new ExpenseType();
+        expenseType1.hue = 10;
+        expenseType1.saturation = 10;
+        expenseType1.type = "1";
+
+        ExpenseType expenseType2 = new ExpenseType();
+        expenseType2.hue = 20;
+        expenseType2.saturation = 20;
+        expenseType2.type = "2";
+
+        expenseTypeList1 = new ExpenseTypeList();
+        expenseTypeList1.expenseTypeList = new ExpenseType[] {expenseType1, expenseType2};
+
+        string path = Application.dataPath + "/v2.2/Data/data.json";
+        string json = JsonUtility.ToJson(expenseTypeList1);
+        File.WriteAllText(path, json);
+        Debug.Log(json);
+    }
+
+    void LoadJson() {
+        string path = Application.dataPath + "/v2.2/Data/expense_type.json";
+        string json = File.ReadAllText(path);
+        expenseTypeList2 = JsonUtility.FromJson<ExpenseType[]>(json);
+        Debug.Log(json);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        //CreateJson();
+        //LoadJson();
         float percentage = 0f;
         for (int i = 0; i < percentages.Length; i++)
         {
@@ -62,4 +94,9 @@ public class StockChart : MonoBehaviour
             Debug.Log($"Error: {www.error}");
         }
     }
+}
+
+public class ExpenseTypeList
+{
+    public ExpenseType[] expenseTypeList;
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 using System;
 
 public class Add : MonoBehaviour
@@ -21,7 +20,7 @@ public class Add : MonoBehaviour
         apiKey = "&apikey=AVGOTKYQXAKS6JY4";
     }
 
-    async public Task<JObject> apiRequest(string url)
+    async public Task<string> apiRequest(string url)
     {
         UnityWebRequest www = UnityWebRequest.Get(apiUrl + url + apiKey);
         www.SetRequestHeader("Content-Type", "application/json");
@@ -37,14 +36,14 @@ public class Add : MonoBehaviour
         {
             /* Debug.Log($"Success: {JObject.Parse(www.downloadHandler.text)}");
             Debug.Log(JObject.Parse(www.downloadHandler.text).First); */
-            return JObject.Parse(www.downloadHandler.text);
+            return www.downloadHandler.text;
             //tickers = JObject.Parse(www.downloadHandler.text).Next;
         }
 
         else
         {
             Debug.Log($"Error: {www.error}");
-            return JObject.Parse("{error: did not expected it}");
+            return "{error: did not expected it}";
         }
     }
 }
