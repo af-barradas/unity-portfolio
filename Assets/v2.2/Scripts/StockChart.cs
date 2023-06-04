@@ -8,45 +8,28 @@ using System.IO;
 
 public class StockChart : MonoBehaviour
 {
-    public ExpenseTypeList expenseTypeList1;
-    public ExpenseType[] expenseTypeList2;
     float[] percentages = new float[] { 58.65f, 32.14f, 9.21f };
-    
+
     public GameObject chartPieces;
     public Image chartPiecePrefab;
-
-    void CreateJson() {
-        ExpenseType expenseType1 = new ExpenseType();
-        expenseType1.hue = 10;
-        expenseType1.saturation = 10;
-        expenseType1.type = "1";
-
-        ExpenseType expenseType2 = new ExpenseType();
-        expenseType2.hue = 20;
-        expenseType2.saturation = 20;
-        expenseType2.type = "2";
-
-        expenseTypeList1 = new ExpenseTypeList();
-        expenseTypeList1.expenseTypeList = new ExpenseType[] {expenseType1, expenseType2};
-
-        string path = Application.dataPath + "/v2.2/Data/data.json";
-        string json = JsonUtility.ToJson(expenseTypeList1);
-        File.WriteAllText(path, json);
-        Debug.Log(json);
-    }
-
-    void LoadJson() {
-        string path = Application.dataPath + "/v2.2/Data/expense_type.json";
-        string json = File.ReadAllText(path);
-        expenseTypeList2 = JsonUtility.FromJson<ExpenseType[]>(json);
-        Debug.Log(json);
-    }
 
     // Start is called before the first frame update
     void Start()
     {
-        //CreateJson();
-        //LoadJson();
+        Data data1 = new Data();
+        Expense expense1 = new Expense("Hoje", 1, "Label1", "Type1", new float[] { 1f, 1f, 1f });
+        Expense expense2 = new Expense("Amanhã", 2, "Label2", "Type2", new float[] { 2f, 2f, 2f });
+        data1.expenses.Add(expense1);
+        data1.expenses.Add(expense2);
+        Debug.Log(expense1.color[1]);
+        Debug.Log(expense2.color[1]);
+
+        SaveSystem.Save(data1);
+
+        Data data2 = new Data(SaveSystem.Load());
+        Debug.Log(data2.expenses[0].color[1]);
+        Debug.Log(data2.expenses[1].color[1]);
+
         float percentage = 0f;
         for (int i = 0; i < percentages.Length; i++)
         {
@@ -94,9 +77,4 @@ public class StockChart : MonoBehaviour
             Debug.Log($"Error: {www.error}");
         }
     }
-}
-
-public class ExpenseTypeList
-{
-    public ExpenseType[] expenseTypeList;
 }

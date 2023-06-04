@@ -23,7 +23,7 @@ public class Data_Manager : MonoBehaviour
 
     public void DefaultStart()
     {
-        this.data = new Data();
+        //this.data = new Data();
     }
 
     public void LoadData()
