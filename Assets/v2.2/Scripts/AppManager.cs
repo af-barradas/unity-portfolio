@@ -14,10 +14,10 @@ public class AppManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    /* void Update()
     {
 
-    }
+    } */
 
     // Called when the application is closed
     private void OnApplicationQuit()

@@ -122,9 +122,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1449587870881652667}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: AddOrder
+        m_MethodName: Add
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6cad7834d50ee9f438c67d5eaa870b18, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 606ed9f90e60fab4e827ef4324bfeab2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fc995845810a5fb44b1548bc88055d7b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 323c18ca55a205741a3b5e7618da3079, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -638,7 +638,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4882fa1410ce6d7458bd243576a7b71c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3aeff5976e6759a4484892e6655c54c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -975,14 +975,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.007843138, g: 0.79607844, b: 0.85882354, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e860c0cc1e4a9ea498da3a5d1084ef3e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6ae70ad99c613aa40954e4aad4a50443, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1114,7 +1114,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1449587870881652667}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: Home
         m_Mode: 1
@@ -1185,14 +1185,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.007843138, g: 0.79607844, b: 0.85882354, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0872ba3eb694b21418b3abc7d661789e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1c6110c54c7f2924d89b676b3159f972, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1211,6 +1211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3674502898993872746}
+  - component: {fileID: 1449587870881652667}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -1241,6 +1242,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 40}
   m_SizeDelta: {x: -720, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1449587870881652667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3674502898993872745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4950f5c77a341fb489962cf2541f3941, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3674502899426466414
 GameObject:
   m_ObjectHideFlags: 0
