@@ -5,7 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 [System.Serializable]
 public static class SaveSystem
 {
-    // Save Function -> Receives all app info from Data and serializes it into a binary file
+    // Receives all app info from Data and serializes it into a binary file
     public static void Save(Data data)
     {
         // Binary file path
@@ -22,7 +22,7 @@ public static class SaveSystem
         stream.Close();
     }
 
-    // Load Function -> Deserializes a binary file and returns all app info as Data
+    // Deserializes a binary file and returns all app info as Data
     public static Data Load()
     {
         // Binary file path
