@@ -16,7 +16,7 @@ public class StockChart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Data data1 = new Data();
+        /* Data data1 = new Data();
         Expense expense1 = new Expense("Hoje", 1, "Label1", "Type1", new float[] { 1f, 1f, 1f });
         Expense expense2 = new Expense("Amanhã", 2, "Label2", "Type2", new float[] { 2f, 2f, 2f });
         data1.expenses.Add(expense1);
@@ -28,7 +28,7 @@ public class StockChart : MonoBehaviour
 
         Data data2 = new Data(SaveSystem.Load());
         Debug.Log(data2.expenses[0].color[1]);
-        Debug.Log(data2.expenses[1].color[1]);
+        Debug.Log(data2.expenses[1].color[1]); */
 
         float percentage = 0f;
         for (int i = 0; i < percentages.Length; i++)

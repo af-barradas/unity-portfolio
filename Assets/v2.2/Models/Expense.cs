@@ -8,8 +8,9 @@ public class Expense
     public string label;
     public string type;
     public float[] color;
+    public string description;
 
-    public Expense(string date, float value, string label, string type, float[] color)
+    public Expense(string date, float value, string label, string type, float[] color, string description)
     {
         this.date = date;
         this.value = value;
@@ -17,5 +18,6 @@ public class Expense
         this.type = type;
         this.color = new float[3];
         this.color = color;
+        this.description = description;
     }
 }
