@@ -10,6 +10,16 @@ public class Expense
     public float[] color;
     public string description;
 
+    public Expense()
+    {
+        this.date = null;
+        this.value = 0;
+        this.label = null;
+        this.type = null;
+        this.color = new float[3];
+        this.description = null;
+    }
+
     public Expense(string date, float value, string label, string type, float[] color, string description)
     {
         this.date = date;
@@ -19,5 +29,10 @@ public class Expense
         this.color = new float[3];
         this.color = color;
         this.description = description;
+    }
+
+    public void SetDate(string date)
+    {
+        this.date = date;
     }
 }

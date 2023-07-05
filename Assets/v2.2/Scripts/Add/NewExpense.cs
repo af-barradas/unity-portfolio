@@ -4,8 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class FormInput : MonoBehaviour
+public class NewExpense : MonoBehaviour
 {
+    [Header("Expense")]
+    private Expense newExpense;
+
     [Header("Forms")]
     [SerializeField] private GameObject stepCheck;
 
@@ -15,6 +18,8 @@ public class FormInput : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        newExpense = new Expense();
+
         step1Form.SetActive(true);
         step2Form.SetActive(false);
     }
@@ -26,7 +31,7 @@ public class FormInput : MonoBehaviour
         step2Form.SetActive(true);
 
         GameObject line = stepCheck.transform.Find("Line").gameObject;
-        line.GetComponent<Image>().color = Color.HSVToRGB(262f / 360, 74f / 100, 95f / 100);
+        line.GetComponent<Image>().color = Color.HSVToRGB(184f / 360, 99f / 100, 84f / 100);
 
         GameObject step1 = stepCheck.transform.Find("Step 1").gameObject;
         GameObject uncheck1 = step1.transform.Find("Uncheck").gameObject;
@@ -38,6 +43,13 @@ public class FormInput : MonoBehaviour
         uncheck2.GetComponent<Image>().color = Color.HSVToRGB(0f, 0f, 1f);
 
         GameObject name2 = step2.transform.Find("Name").gameObject;
-        name2.GetComponent<TextMeshProUGUI>().color = Color.HSVToRGB(90f / 360, 4f / 100, 42f / 100);
+        name2.GetComponent<TextMeshProUGUI>().color = Color.HSVToRGB(80f / 360, 4f / 100, 60f / 100);
+    }
+
+    // Callable functions
+    public void updateDate(int year, int month, int day)
+    {
+        newExpense.SetDate(day + "/" + month + "/" + year);
+        Debug.Log(newExpense.date);
     }
 }
