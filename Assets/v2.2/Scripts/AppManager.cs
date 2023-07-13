@@ -6,7 +6,7 @@ using System.Threading;
 
 public class AppManager : MonoBehaviour
 {
-    public Data data;
+    public static Data data;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,7 @@ public class AppManager : MonoBehaviour
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
         // Load data
-        this.data = SaveSystem.Load();
+        AppManager.data = SaveSystem.Load();
     }
 
     // Update is called once per frame
@@ -28,6 +28,6 @@ public class AppManager : MonoBehaviour
     private void OnApplicationQuit()
     {
         // Save Data
-        SaveSystem.Save(this.data);
+        SaveSystem.Save(AppManager.data);
     }
 }

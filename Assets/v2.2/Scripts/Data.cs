@@ -18,4 +18,9 @@ public class Data
         // Initialize list
         this.expenses = data.expenses;
     }
+
+    public void addExpense(Expense expense)
+    {
+        this.expenses.Add(expense);
+    }
 }

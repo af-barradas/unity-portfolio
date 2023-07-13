@@ -120,12 +120,14 @@ public class DateInput : MonoBehaviour
 
         var oldColors = selectedDay.GetComponentInChildren<Button>().colors;
         oldColors.normalColor = Color.HSVToRGB(0f / 360, 0f / 100, 100f / 100);
+        oldColors.selectedColor = Color.HSVToRGB(0f / 360, 0f / 100, 100f / 100);
         selectedDay.GetComponentInChildren<Button>().colors = oldColors;
 
         selectedDay = newSelectedDay;
 
         var newColors = selectedDay.GetComponentInChildren<Button>().colors;
         newColors.normalColor = Color.HSVToRGB(0f / 360, 0f / 100, 78f / 100);
+        newColors.selectedColor = Color.HSVToRGB(0f / 360, 0f / 100, 78f / 100);
         selectedDay.GetComponentInChildren<Button>().colors = newColors;
     }
 }
