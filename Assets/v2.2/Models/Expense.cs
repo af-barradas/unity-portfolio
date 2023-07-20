@@ -42,6 +42,11 @@ public class Expense
         return this.category;
     }
 
+    public float GetValue()
+    {
+        return this.value;
+    }
+
     public void SetDate(string date)
     {
         this.date = date;

@@ -64,7 +64,6 @@ public class NewExpense : MonoBehaviour
 
     public void Add()
     {
-        AppManager.data.addExpense(this.newExpense);
-        SaveSystem.Save(AppManager.data);
+        DataManager.addExpense(this.newExpense);
     }
 }

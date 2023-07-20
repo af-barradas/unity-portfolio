@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEditor;
 
 [System.Serializable]
 public static class SaveSystem
@@ -32,7 +33,7 @@ public static class SaveSystem
         if (!File.Exists(path))
         {
             // Return clean Data
-            Debug.Log("Save file not found in " + path);
+            Debug.Log("File not found in " + path);
             return new Data();
         }
 
@@ -48,5 +49,22 @@ public static class SaveSystem
 
         // Return saved Data
         return data;
+    }
+
+    // Deletes an existing data file
+    public static void Delete()
+    {
+        // Binary file path
+        string path = Constants.GetSavePath();
+
+        // Check if file doesnt exist
+        if (!File.Exists(path))
+        {
+            Debug.Log("File not found in " + path);
+            return;
+        }
+
+        // Delete file
+        File.Delete(path);
     }
 }
