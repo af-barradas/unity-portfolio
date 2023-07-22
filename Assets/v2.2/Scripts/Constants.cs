@@ -15,6 +15,9 @@ public static class Constants
     public static Color vacationColor = Color.HSVToRGB(260f / 360, 48f / 100, 93f / 100);
     public static Color investmentColor = Color.HSVToRGB(185f / 360, 54f / 100, 66f / 100);
 
+    public static Color positiveColor = Color.HSVToRGB(119f / 360, 64f / 100, 100f / 100);
+    public static Color negativeColor = Color.HSVToRGB(354f / 360, 64f / 100, 100f / 100);
+
     // Request Functions
     public static string GetSavePath()
     {

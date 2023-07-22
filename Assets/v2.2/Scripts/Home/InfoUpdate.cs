@@ -28,6 +28,8 @@ public class InfoUpdate : MonoBehaviour
     [SerializeField] private TextMeshProUGUI budgetComparison;
     [SerializeField] private TextMeshProUGUI monthAverage;
 
+    [SerializeField] private TMP_InputField monthlyBudget;
+
     private System.DateTime today;
 
     public void updateHomePage()
@@ -35,6 +37,8 @@ public class InfoUpdate : MonoBehaviour
         // Update Values
         // Get todays date
         today = System.DateTime.Today;
+
+        monthlyBudget.text = DataManager.data.monthlyBudget.ToString();
 
         monthName.text = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DataManager.data.monthInfo[11].month);
 
@@ -65,7 +69,17 @@ public class InfoUpdate : MonoBehaviour
             investmentPct.text = investmentPercentage + " %";
         }
 
-        // TODO comparison value update
+        float budgetMath = Mathf.Round((DataManager.data.monthlyBudget - totalValue) * 100f) / 100f;
+        budgetComparison.text = "€ " + budgetMath.ToString();
+
+        if (budgetMath >= 0)
+        {
+            budgetComparison.color = Constants.positiveColor;
+        }
+        else
+        {
+            budgetComparison.color = Constants.negativeColor;
+        }
 
         monthAverage.text = "€ " + roundBy2(DataManager.data.getAverage()).ToString();
 

@@ -24,6 +24,12 @@ public static class DataManager
         DataManager.updateData();
     }
 
+    public static void forceLoad()
+    {
+        DataManager.data = SaveSystem.Load();
+        DataManager.updateData();
+    }
+
     private static void updateData()
     {
         if (DataManager.data.monthInfo.Count == 0)
@@ -79,5 +85,10 @@ public static class DataManager
         }
 
         DataManager.data.addExpense(index, expense);
+    }
+
+    public static void updateMonthlyBudget(string monthlyBudget)
+    {
+        DataManager.data.monthlyBudget = Mathf.Round(float.Parse(monthlyBudget) * 100f) / 100f;
     }
 }
