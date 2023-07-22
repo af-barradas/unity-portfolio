@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,38 +9,75 @@ public static class DataManager
 
     public static void addExpense(Expense expense)
     {
-        DataManager.data.addExpense(expense);
-        DataManager.updateData(expense.GetDate(), expense.GetValue());
+        DataManager.updateMonthData(expense.GetDate(), expense.GetValue(), expense.GetType());
+        DataManager.updateExpenseData(expense);
         SaveSystem.Save(DataManager.data);
     }
 
     public static void loadData()
     {
-        DataManager.data = SaveSystem.Load();
+        if (DataManager.data == null)
+        {
+            DataManager.data = SaveSystem.Load();
+        }
+
+        DataManager.updateData();
     }
 
-    private static void updateData(string date, float value)
+    private static void updateData()
+    {
+        if (DataManager.data.monthInfo.Count == 0)
+        {
+            DataManager.createNewData(12);
+            return;
+        }
+
+        DateTime lastYear = DateTime.Today.AddYears(-1);
+
+        int cnt = 0;
+        while (DataManager.data.monthInfo[0].year < lastYear.Year || (DataManager.data.monthInfo[0].year == lastYear.Year && DataManager.data.monthInfo[0].month <= lastYear.Month))
+        {
+            DataManager.data.monthInfo.RemoveAt(0);
+            cnt++;
+        }
+
+        DataManager.createNewData(cnt);
+    }
+
+    private static void createNewData(int numberOfMonths)
+    {
+        int starter = (numberOfMonths - 1) * -1;
+
+        for (int i = starter; i <= 0; i++)
+        {
+            DateTime newDate = DateTime.Today.AddMonths(i);
+            DataManager.data.addMonth(newDate.Year, newDate.Month, 0);
+        }
+    }
+
+    private static void updateMonthData(string date, float value, string type)
+    {
+        for (int i = DataManager.data.monthInfo.Count - 1; i >= 0; i--)
+        {
+            if (DataManager.data.monthInfo[i].year == DateTime.Parse(date).Year && DataManager.data.monthInfo[i].month == DateTime.Parse(date).Month)
+            {
+                DataManager.data.addValue(i, value, type);
+            }
+        }
+    }
+
+    private static void updateExpenseData(Expense expense)
     {
         int index = -1;
-        for (int i = DataManager.data.monthInfo.Count; i >= 0; i--)
+        for (int i = DataManager.data.expenseInfo.Count - 1; i >= 0; i--)
         {
-            if (System.DateTime.Parse(date).Month == DataManager.data.monthInfo[i].month && System.DateTime.Parse(date).Year == DataManager.data.monthInfo[i].year)
+            if (DateTime.Parse(expense.GetDate()).Year == DataManager.data.expenseInfo[i].year)
             {
                 index = i;
                 break;
             }
         }
 
-        if (index == -1)
-        {
-            if (DataManager.data.monthInfo[DataManager.data.monthInfo.Count - 1].year == System.DateTime.Parse(date).Year || DataManager.data.monthInfo[DataManager.data.monthInfo.Count - 1].year == System.DateTime.Parse(date).Year + 1)
-            {
-                data.addMonth(System.DateTime.Parse(date).Year, System.DateTime.Parse(date).Month, value);
-            }
-        }
-        else
-        {
-            DataManager.data.addValue(index, value);
-        }
+        DataManager.data.addExpense(index, expense);
     }
 }

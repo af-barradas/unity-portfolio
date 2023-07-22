@@ -6,7 +6,7 @@ using System.Threading;
 
 public class AppManager : MonoBehaviour
 {
-    public Data data;
+    [SerializeField] private InfoUpdate infoUpdate;
 
     // Start is called before the first frame update
     void Start()
@@ -15,15 +15,10 @@ public class AppManager : MonoBehaviour
         Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
 
         // Load data into Data Manager
-        //DataManager.loadData();
-        SaveSystem.Delete();
+        DataManager.loadData();
+
+        infoUpdate.updateHomePage();
     }
-
-    // Update is called once per frame
-    /* void Update()
-    {
-
-    } */
 
     // Called when the application is closed
     private void OnApplicationQuit()

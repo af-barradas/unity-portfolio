@@ -62,6 +62,7 @@ public class CheckInput : MonoBehaviour
             return;
         }
 
+        newExpense.updateValue((Mathf.Round(float.Parse(value.text) * 100f) / 100f));
         animationInput.UpdateWarningStatus(false, "");
         animationInput.Add();
 

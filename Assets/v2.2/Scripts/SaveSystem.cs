@@ -37,6 +37,14 @@ public static class SaveSystem
             return new Data();
         }
 
+        // Check if file is empty
+        if (new FileInfo(path).Length == 0)
+        {
+            // Return clean Data
+            Debug.Log("File in " + path + " is empty");
+            return new Data();
+        }
+
         // Stream file to open file
         FileStream stream = new FileStream(path, FileMode.Open);
 
