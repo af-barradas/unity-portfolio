@@ -16,4 +16,10 @@ public class Menu : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 1) { return; }
         SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
+
+    public void List()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 2) { return; }
+        SceneManager.LoadScene(2, LoadSceneMode.Single);
+    }
 }

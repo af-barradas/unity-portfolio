@@ -91,4 +91,16 @@ public static class DataManager
     {
         DataManager.data.monthlyBudget = Mathf.Round(float.Parse(monthlyBudget) * 100f) / 100f;
     }
+
+    public static List<Expense> getExpenses(int year)
+    {
+        for (int i = 0; i < DataManager.data.expenseInfo.Count; i++)
+        {
+            if (DataManager.data.expenseInfo[i].year == year)
+            {
+                return DataManager.data.expenseInfo[i].expenses;
+            }
+        }
+        return null;
+    }
 }
