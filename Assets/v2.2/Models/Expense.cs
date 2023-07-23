@@ -47,6 +47,16 @@ public class Expense
         return this.value;
     }
 
+    public string GetDescription()
+    {
+        if (this.description == null || this.description == "")
+        {
+            return "No description...";
+        }
+
+        return this.description;
+    }
+
     public void SetDate(string date)
     {
         this.date = date;

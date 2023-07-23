@@ -23,4 +23,24 @@ public static class Constants
     {
         return savePath;
     }
+
+    public static Color getTypeColor(string type)
+    {
+        if (type == essentialName)
+        {
+            return essentialColor;
+        }
+        else if (type == nonEssentialName)
+        {
+            return nonEssentialColor;
+        }
+        else if (type == vacationName)
+        {
+            return vacationColor;
+        }
+        else
+        {
+            return investmentColor;
+        }
+    }
 }

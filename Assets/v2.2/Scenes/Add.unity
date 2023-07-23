@@ -19087,6 +19087,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 492545108}
     m_Modifications:
+    - target: {fileID: 75171797506892668, guid: c29ad3944d38f7b4792a59007ce3c14e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.84313726
+      objectReference: {fileID: 0}
+    - target: {fileID: 75171797506892668, guid: c29ad3944d38f7b4792a59007ce3c14e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 75171797506892668, guid: c29ad3944d38f7b4792a59007ce3c14e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.007843138
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674502898858788025, guid: c29ad3944d38f7b4792a59007ce3c14e, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674502898858788025, guid: c29ad3944d38f7b4792a59007ce3c14e, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674502898858788025, guid: c29ad3944d38f7b4792a59007ce3c14e, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3674502898993872745, guid: c29ad3944d38f7b4792a59007ce3c14e, type: 3}
       propertyPath: m_Name
       value: Menu
