@@ -108,6 +108,16 @@ public class Data
         this.monthInfo[index] = month;
     }
 
+    public float getTotalYear(int index)
+    {
+        float total = 0;
+        for (int i = 0; i < this.expenseInfo[index].expenses.Count; i++)
+        {
+            total += this.expenseInfo[index].expenses[i].GetValue();
+        }
+        return total;
+    }
+
     public float getTotal(int index)
     {
         return this.monthInfo[index].essentialTotal + this.monthInfo[index].nonEssentialTotal + this.monthInfo[index].vacationTotal + this.monthInfo[index].investmentTotal;

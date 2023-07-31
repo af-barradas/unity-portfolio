@@ -54,7 +54,7 @@ public class InfoUpdate : MonoBehaviour
         float nonEssentialPercentage = 0;
         float vacationPercentage = 0;
         float investmentPercentage = 0;
-        if (totalValue != 0)
+        if (totalValue > 0)
         {
             essentialPercentage = roundBy2(DataManager.data.monthInfo[11].essentialTotal / totalValue * 100);
             essentialPct.text = essentialPercentage + " %";
@@ -66,6 +66,13 @@ public class InfoUpdate : MonoBehaviour
             vacationPct.text = vacationPercentage + " %";
 
             investmentPercentage = roundBy2(DataManager.data.monthInfo[11].investmentTotal / totalValue * 100);
+            investmentPct.text = investmentPercentage + " %";
+        }
+        else
+        {
+            essentialPct.text = essentialPercentage + " %";
+            nonEssentialPct.text = nonEssentialPercentage + " %";
+            vacationPct.text = vacationPercentage + " %";
             investmentPct.text = investmentPercentage + " %";
         }
 

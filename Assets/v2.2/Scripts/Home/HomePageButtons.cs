@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HomePageButtons : MonoBehaviour
 {
@@ -29,6 +30,6 @@ public class HomePageButtons : MonoBehaviour
     {
         SaveSystem.Delete();
         DataManager.forceLoad();
-        infoUpdate.updateHomePage();
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
     }
 }
