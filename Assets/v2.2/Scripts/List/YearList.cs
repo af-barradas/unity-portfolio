@@ -11,9 +11,12 @@ public class YearList : MonoBehaviour
     [SerializeField] private GameObject year;
     [SerializeField] private GameObject expense;
     [SerializeField] private TextMeshProUGUI average;
+    [SerializeField] private TMP_Dropdown filterType;
+    [SerializeField] private TMP_Dropdown filterCategory;
+    [SerializeField] private TMP_InputField filterValue;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         float total = 0;
         for (int i = 0; i < DataManager.data.expenseInfo.Count; i++)
