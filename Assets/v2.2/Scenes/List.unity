@@ -3749,6 +3749,9 @@ MonoBehaviour:
   year: {fileID: 757528958511079102, guid: 85f62392bf5fb58498e912ff434e7711, type: 3}
   expense: {fileID: 531560260956543440, guid: 801ee5ec0c7693d47a90af3e95ac29e4, type: 3}
   average: {fileID: 1666856658}
+  filterType: {fileID: 299972892}
+  filterCategory: {fileID: 1740489808}
+  filterValue: {fileID: 398966873}
 --- !u!1 &1740489806
 GameObject:
   m_ObjectHideFlags: 0
