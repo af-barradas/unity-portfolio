@@ -12,12 +12,22 @@ public class YearList : MonoBehaviour
     [SerializeField] private GameObject expense;
     [SerializeField] private TextMeshProUGUI average;
     [SerializeField] private TMP_Dropdown filterType;
+    [SerializeField] private RectTransform filterTypeTemplate;
     [SerializeField] private TMP_Dropdown filterCategory;
+    [SerializeField] private RectTransform filterCategoryTemplate;
     [SerializeField] private TMP_InputField filterValue;
 
     // Start is called before the first frame update
     private void Start()
     {
+        // Load type filter's information
+        List<string> typeOptions = new List<string> { "All Types", Constants.essential.getName(), Constants.nonEssential.getName(), Constants.vacation.getName(), Constants.investment.getName() };
+        filterType.AddOptions(typeOptions);
+        filterTypeTemplate.sizeDelta = new Vector2(filterTypeTemplate.sizeDelta.x, typeOptions.Count * 75f);
+
+        // Disable category filter
+        filterCategory.interactable = false;
+
         float total = 0;
         for (int i = 0; i < DataManager.data.expenseInfo.Count; i++)
         {

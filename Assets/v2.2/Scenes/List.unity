@@ -324,6 +324,7 @@ GameObject:
   - component: {fileID: 299972894}
   - component: {fileID: 299972893}
   - component: {fileID: 299972892}
+  - component: {fileID: 299972895}
   m_Layer: 5
   m_Name: Type
   m_TagString: Untagged
@@ -351,8 +352,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 30, y: -50}
-  m_SizeDelta: {x: 210, y: 75}
+  m_AnchoredPosition: {x: 35, y: -50}
+  m_SizeDelta: {x: 220, y: 75}
   m_Pivot: {x: -0.00000004959678, y: 0.49999863}
 --- !u!114 &299972892
 MonoBehaviour:
@@ -408,7 +409,19 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 299972895}
+        m_TargetAssemblyTypeName: ListPageButtons, Assembly-CSharp
+        m_MethodName: updateCategories
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1740489806}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &299972893
 MonoBehaviour:
@@ -448,6 +461,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299972890}
   m_CullTransparentMesh: 1
+--- !u!114 &299972895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299972890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22cd4128a18084a42bd67f25ce8ec1cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &331623520
 GameObject:
   m_ObjectHideFlags: 0
@@ -2645,8 +2670,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 241, y: 0}
-  m_SizeDelta: {x: 178, y: 70}
+  m_AnchoredPosition: {x: 233, y: 0}
+  m_SizeDelta: {x: 195, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1316293493
 MonoBehaviour:
@@ -3750,7 +3775,9 @@ MonoBehaviour:
   expense: {fileID: 531560260956543440, guid: 801ee5ec0c7693d47a90af3e95ac29e4, type: 3}
   average: {fileID: 1666856658}
   filterType: {fileID: 299972892}
+  filterTypeTemplate: {fileID: 1482885688}
   filterCategory: {fileID: 1740489808}
+  filterCategoryTemplate: {fileID: 381093239}
   filterValue: {fileID: 398966873}
 --- !u!1 &1740489806
 GameObject:
@@ -3792,7 +3819,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -50}
-  m_SizeDelta: {x: 210, y: 75}
+  m_SizeDelta: {x: 220, y: 75}
   m_Pivot: {x: 0.43826538, y: 0.49999946}
 --- !u!114 &1740489808
 MonoBehaviour:

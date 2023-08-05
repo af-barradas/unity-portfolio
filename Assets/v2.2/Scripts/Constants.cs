@@ -1,14 +1,15 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public static class Constants
 {
     // Variables
     private static string savePath = Application.persistentDataPath + "/data.afsb";
 
-    public static string essentialName = "Essential";
-    public static string nonEssentialName = "Non Essential";
-    public static string vacationName = "Vacation";
-    public static string investmentName = "Investment";
+    public static Type essential = new Type("Essential", new List<string> { "Groceries", "Rent", "Bills", "Gym", "Health", "House", "Transports", "Other" });
+    public static Type nonEssential = new Type("Non Essential", new List<string> { "Restaurant", "Leisure", "Clothing", "Hardware", "House", "Gift", "Other" });
+    public static Type vacation = new Type("Vacation", new List<string> { "Flight", "Stay", "Groceries", "Restaurant", "Sightseeing", "Gift", "Other" });
+    public static Type investment = new Type("Investment", new List<string> { "Real Estate", "Stocks", "PPR", "Bank/Gov", "Business", "Other" });
 
     public static Color essentialColor = Color.HSVToRGB(34f / 360, 81f / 100, 100f / 100);
     public static Color nonEssentialColor = Color.HSVToRGB(81f / 360, 89f / 100, 86f / 100);
@@ -26,21 +27,45 @@ public static class Constants
 
     public static Color getTypeColor(string type)
     {
-        if (type == essentialName)
+        if (type == essential.getName())
         {
             return essentialColor;
         }
-        else if (type == nonEssentialName)
+        else if (type == nonEssential.getName())
         {
             return nonEssentialColor;
         }
-        else if (type == vacationName)
+        else if (type == vacation.getName())
         {
             return vacationColor;
         }
         else
         {
             return investmentColor;
+        }
+    }
+
+    public static List<string> getTypeCategories(string type)
+    {
+        if (type == essential.getName())
+        {
+            return essential.getCategories();
+        }
+        else if (type == nonEssential.getName())
+        {
+            return nonEssential.getCategories();
+        }
+        else if (type == vacation.getName())
+        {
+            return vacation.getCategories();
+        }
+        else if (type == investment.getName())
+        {
+            return investment.getCategories();
+        }
+        else
+        {
+            return new List<string>();
         }
     }
 }

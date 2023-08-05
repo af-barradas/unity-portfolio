@@ -38,4 +38,23 @@ public class ListPageButtons : MonoBehaviour
         arrow.transform.eulerAngles = rotationClose;
         isOpen = true;
     }
+
+    public void updateCategories(GameObject filterCategoryObject)
+    {
+        // Load category filter's information
+        TMP_Dropdown filterType = this.GetComponent<TMP_Dropdown>();
+        TMP_Dropdown filterCategory = filterCategoryObject.GetComponent<TMP_Dropdown>();
+
+        List<string> categoryOptions = Constants.getTypeCategories(filterType.options[filterType.value].text);
+        categoryOptions.Insert(0, "All Categories");
+
+        filterCategory.GetComponent<TMP_Dropdown>().ClearOptions();
+        filterCategory.GetComponent<TMP_Dropdown>().AddOptions(categoryOptions);
+
+        RectTransform filterCategoryTemplate = filterCategory.transform.Find("Template").GetComponent<RectTransform>();
+        filterCategoryTemplate.sizeDelta = new Vector2(filterCategoryTemplate.sizeDelta.x, categoryOptions.Count * 75f);
+
+        if (categoryOptions.Count > 1) { filterCategory.interactable = true; }
+        else { filterCategory.interactable = false; }
+    }
 }

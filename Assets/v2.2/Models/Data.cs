@@ -83,10 +83,10 @@ public class Data
         item.vacationTotal = 0;
         item.investmentTotal = 0;
 
-        if (type == Constants.essentialName) item.essentialTotal = value;
-        if (type == Constants.nonEssentialName) item.nonEssentialTotal = value;
-        if (type == Constants.vacationName) item.vacationTotal = value;
-        if (type == Constants.investmentName) item.investmentTotal = value;
+        if (type == Constants.essential.getName()) item.essentialTotal = value;
+        if (type == Constants.nonEssential.getName()) item.nonEssentialTotal = value;
+        if (type == Constants.vacation.getName()) item.vacationTotal = value;
+        if (type == Constants.investment.getName()) item.investmentTotal = value;
 
         if (this.monthInfo.Count > 0)
         {
@@ -100,10 +100,10 @@ public class Data
     {
         monthStruct month = this.monthInfo[index];
 
-        if (type == Constants.essentialName) month.essentialTotal += value;
-        if (type == Constants.nonEssentialName) month.nonEssentialTotal += value;
-        if (type == Constants.vacationName) month.vacationTotal += value;
-        if (type == Constants.investmentName) month.investmentTotal += value;
+        if (type == Constants.essential.getName()) month.essentialTotal += value;
+        if (type == Constants.nonEssential.getName()) month.nonEssentialTotal += value;
+        if (type == Constants.vacation.getName()) month.vacationTotal += value;
+        if (type == Constants.investment.getName()) month.investmentTotal += value;
 
         this.monthInfo[index] = month;
     }
