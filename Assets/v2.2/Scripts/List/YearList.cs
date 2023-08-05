@@ -14,7 +14,6 @@ public class YearList : MonoBehaviour
     [SerializeField] private TMP_Dropdown filterType;
     [SerializeField] private RectTransform filterTypeTemplate;
     [SerializeField] private TMP_Dropdown filterCategory;
-    [SerializeField] private RectTransform filterCategoryTemplate;
     [SerializeField] private TMP_InputField filterValue;
 
     // Start is called before the first frame update
@@ -27,6 +26,14 @@ public class YearList : MonoBehaviour
 
         // Disable category filter
         filterCategory.interactable = false;
+
+        listInfo();
+    }
+
+    public void listInfo()
+    {
+        // Clear expenses
+        clearInfo();
 
         float total = 0;
         for (int i = 0; i < DataManager.data.expenseInfo.Count; i++)
@@ -63,5 +70,10 @@ public class YearList : MonoBehaviour
         {
             average.text = "€ " + (total / DataManager.data.expenseInfo.Count).ToString();
         }
+    }
+
+    private void clearInfo()
+    {
+        return;
     }
 }
