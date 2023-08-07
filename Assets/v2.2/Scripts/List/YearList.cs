@@ -33,7 +33,7 @@ public class YearList : MonoBehaviour
     public void listInfo()
     {
         // Clear expenses
-        clearInfo();
+        clearInfo(content);
 
         float total = 0;
         for (int i = 0; i < DataManager.data.expenseInfo.Count; i++)
@@ -70,10 +70,15 @@ public class YearList : MonoBehaviour
         {
             average.text = "€ " + (total / DataManager.data.expenseInfo.Count).ToString();
         }
+
+        clearInfo(content);
     }
 
-    private void clearInfo()
+    private void clearInfo(Transform parent)
     {
-        return;
+        foreach (Transform child in parent)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }
