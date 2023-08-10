@@ -3,6 +3,7 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Expense
 {
+    private int key;
     private string date;
     private float value;
     private string type;
@@ -11,6 +12,7 @@ public class Expense
 
     public Expense()
     {
+        this.key = 0;
         this.date = null;
         this.value = 0;
         this.type = null;
@@ -18,13 +20,19 @@ public class Expense
         this.description = null;
     }
 
-    public Expense(string date, float value, string type, string category, string description)
+    public Expense(int key, string date, float value, string type, string category, string description)
     {
+        this.key = key;
         this.date = date;
         this.value = value;
         this.type = type;
         this.category = category;
         this.description = description;
+    }
+
+    public int GetKey()
+    {
+        return this.key;
     }
 
     public string GetDate()
@@ -49,12 +57,12 @@ public class Expense
 
     public string GetDescription()
     {
-        if (this.description == null || this.description == "")
-        {
-            return "No description...";
-        }
-
         return this.description;
+    }
+
+    public void SetKey(int key)
+    {
+        this.key = key;
     }
 
     public void SetDate(string date)

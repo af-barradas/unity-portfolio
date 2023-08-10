@@ -36,17 +36,34 @@ public class YearList : MonoBehaviour
         clearInfo(content);
 
         float total = 0;
+        int yearCnt = 0;
         for (int i = 0; i < DataManager.data.expenseInfo.Count; i++)
         {
+            float yearTotal = 0;
+
             GameObject newYear = Instantiate(year, content.transform);
-            newYear.transform.Find("Name").gameObject.GetComponent<TextMeshProUGUI>().text = DataManager.data.expenseInfo[i].year.ToString();
-            total += DataManager.data.getTotalYear(i);
-            newYear.transform.Find("Value").gameObject.GetComponent<TextMeshProUGUI>().text = "€ " + total.ToString();
 
             List<Expense> expenses = DataManager.getExpenses(DataManager.data.expenseInfo[i].year);
 
+            string filterTypeText = filterType.options[filterType.value].text;
+            string filterCategoryText = filterCategory.options[filterCategory.value].text;
+            float filterValueNumber = 0;
+            try
+            {
+                filterValueNumber = float.Parse(filterValue.text);
+            }
+            catch { }
+
+            int cnt = 0;
             for (int j = 0; j < expenses.Count; j++)
             {
+                if (expenses[j].GetValue() <= filterValueNumber) continue;
+                if (expenses[j].GetType() != filterTypeText && filterTypeText != null && filterTypeText != "" && filterTypeText != "All Types") continue;
+                if (expenses[j].GetCategory() != filterCategoryText && filterCategoryText != null && filterCategoryText != "" && filterCategoryText != "All Categories") continue;
+
+                yearTotal += expenses[j].GetValue();
+                cnt++;
+
                 GameObject scrollRect = newYear.transform.Find("Scroll").gameObject;
                 GameObject newExpense = Instantiate(expense, scrollRect.transform.Find("Content").gameObject.transform);
 
@@ -59,19 +76,38 @@ public class YearList : MonoBehaviour
                 GameObject value = newExpense.transform.Find("Value").gameObject;
                 value.GetComponent<TextMeshProUGUI>().text = "€ " + expenses[j].GetValue().ToString();
 
-                GameObject description = newExpense.transform.Find("Description").gameObject;
-                description.GetComponent<TextMeshProUGUI>().text = expenses[j].GetDescription();
+                GameObject dateDescription = newExpense.transform.Find("Date and Description").gameObject;
+                dateDescription.GetComponent<TextMeshProUGUI>().text = expenses[j].GetDate() + " - " + (expenses[j].GetDescription() != "" && expenses[j].GetDescription() != null ? expenses[j].GetDescription() : "No description...");
+
+                GameObject key = newExpense.transform.Find("Key").gameObject;
+                key.GetComponent<TextMeshProUGUI>().text = expenses[j].GetKey().ToString();
+
+                /* GameObject description = newExpense.transform.Find("Description").gameObject;
+                description.GetComponent<TextMeshProUGUI>().text = expenses[j].GetDescription(); */
             }
 
-            newYear.GetComponent<RectTransform>().sizeDelta = new Vector2(newYear.GetComponent<RectTransform>().sizeDelta.x, 100);
+            if (cnt == 0) { Destroy(newYear); continue; }
+
+            yearCnt++;
+
+            newYear.transform.Find("Name").gameObject.GetComponent<TextMeshProUGUI>().text = DataManager.data.expenseInfo[i].year.ToString();
+            newYear.transform.Find("Value").gameObject.GetComponent<TextMeshProUGUI>().text = "€ " + yearTotal.ToString();
+            newYear.transform.Find("Scroll").gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(newYear.transform.Find("Scroll").gameObject.GetComponent<RectTransform>().sizeDelta.x, Constants.expenseHeight * newYear.transform.Find("Scroll").gameObject.transform.Find("Content").transform.childCount + 5 * (newYear.transform.Find("Scroll").gameObject.transform.Find("Content").transform.childCount - 1));
+            //newYear.GetComponent<RectTransform>().sizeDelta = new Vector2(newYear.GetComponent<RectTransform>().sizeDelta.x, 100);
+
+            total += yearTotal;
         }
 
-        if (DataManager.data.expenseInfo.Count > 0)
+        if (yearCnt > 0)
         {
-            average.text = "€ " + (total / DataManager.data.expenseInfo.Count).ToString();
+            average.text = "€ " + roundBy2(total / yearCnt).ToString();
+        }
+        else
+        {
+            average.text = "€ 0";
         }
 
-        clearInfo(content);
+        //clearInfo(content);
     }
 
     private void clearInfo(Transform parent)
@@ -80,5 +116,10 @@ public class YearList : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+
+    private float roundBy2(float value)
+    {
+        return Mathf.Round(value * 100f) / 100f;
     }
 }

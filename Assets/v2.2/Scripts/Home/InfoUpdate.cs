@@ -43,6 +43,7 @@ public class InfoUpdate : MonoBehaviour
         monthName.text = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(DataManager.data.monthInfo[11].month);
 
         float totalValue = DataManager.data.getTotal(11);
+        float totalBudget = totalValue - DataManager.data.monthInfo[11].investmentTotal;
 
         monthValue.text = "€ " + totalValue.ToString();
         essentialValue.text = "€ " + DataManager.data.monthInfo[11].essentialTotal;
@@ -76,7 +77,7 @@ public class InfoUpdate : MonoBehaviour
             investmentPct.text = investmentPercentage + " %";
         }
 
-        float budgetMath = Mathf.Round((DataManager.data.monthlyBudget - totalValue) * 100f) / 100f;
+        float budgetMath = Mathf.Round((DataManager.data.monthlyBudget - totalBudget) * 100f) / 100f;
         budgetComparison.text = "€ " + budgetMath.ToString();
 
         if (budgetMath >= 0)

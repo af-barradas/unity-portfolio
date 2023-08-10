@@ -6,6 +6,12 @@ using UnityEngine;
 public static class DataManager
 {
     public static Data data;
+    public static Expense selectedExpense;
+
+    public static void fillSelectedExpense(int key)
+    {
+        DataManager.selectedExpense = DataManager.data.getExpenseByKey(key);
+    }
 
     public static void addExpense(Expense expense)
     {
@@ -57,7 +63,7 @@ public static class DataManager
         for (int i = starter; i <= 0; i++)
         {
             DateTime newDate = DateTime.Today.AddMonths(i);
-            DataManager.data.addMonth(newDate.Year, newDate.Month, 0);
+            DataManager.data.addMonth(newDate.Year, newDate.Month);
         }
     }
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ListPageButtons : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class ListPageButtons : MonoBehaviour
         if (isOpen)
         {
             scrollRect.gameObject.SetActive(true);
-            year.GetComponent<RectTransform>().sizeDelta = new Vector2(year.GetComponent<RectTransform>().sizeDelta.x, year.GetComponent<RectTransform>().sizeDelta.y + 100 * content.childCount + 40);
+            year.GetComponent<RectTransform>().sizeDelta = new Vector2(year.GetComponent<RectTransform>().sizeDelta.x, year.GetComponent<RectTransform>().sizeDelta.y + Constants.expenseHeight * content.childCount + 5 * (content.childCount - 1) + 40);
             Vector3 rotationOpen = arrow.transform.eulerAngles;
             rotationOpen.z = -90;
             arrow.transform.eulerAngles = rotationOpen;
@@ -41,7 +42,7 @@ public class ListPageButtons : MonoBehaviour
 
     public void updateCategories(GameObject filterCategoryObject)
     {
-        // Load category filter's information
+        //  category filter's information
         TMP_Dropdown filterType = this.GetComponent<TMP_Dropdown>();
         TMP_Dropdown filterCategory = filterCategoryObject.GetComponent<TMP_Dropdown>();
 
@@ -56,5 +57,11 @@ public class ListPageButtons : MonoBehaviour
 
         if (categoryOptions.Count > 1) { filterCategory.interactable = true; }
         else { filterCategory.interactable = false; }
+    }
+
+    public void editExpense(TextMeshProUGUI key)
+    {
+        DataManager.fillSelectedExpense(Int16.Parse(key.text));
+        SceneManager.LoadScene(3, LoadSceneMode.Single);
     }
 }

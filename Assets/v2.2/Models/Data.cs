@@ -27,6 +27,7 @@ public class Data
     public List<monthStruct> monthInfo;
 
     public float monthlyBudget;
+    public int lastKey;
 
     public Data()
     {
@@ -34,6 +35,7 @@ public class Data
         this.expenseInfo = new List<expenseStruct>();
         this.monthInfo = new List<monthStruct>(12);
         this.monthlyBudget = 0;
+        this.lastKey = 0;
     }
 
     public Data(Data data)
@@ -42,25 +44,53 @@ public class Data
         this.expenseInfo = data.expenseInfo;
         this.monthInfo = data.monthInfo;
         this.monthlyBudget = data.monthlyBudget;
+        this.lastKey = data.lastKey;
     }
 
     public void addExpense(int index, Expense expense)
     {
+        this.lastKey++;
+        expense.SetKey(this.lastKey);
+
         if (index == -1)
         {
+            int year = System.DateTime.Parse(expense.GetDate()).Year;
             expenseStruct item;
-            item.year = System.DateTime.Parse(expense.GetDate()).Year;
-            item.expenses = new List<Expense>();
-            item.expenses.Add(expense);
+            item.year = year;
+            item.expenses = new List<Expense> { expense };
+
+            if (this.expenseInfo.Count == 0)
+            {
+                this.expenseInfo.Add(item);
+                return;
+            }
+
+            for (int i = 0; i < this.expenseInfo.Count; i++)
+            {
+                if (this.expenseInfo[i].year > year) continue;
+
+                this.expenseInfo.Insert(i, item);
+                return;
+            }
+
             this.expenseInfo.Add(item);
         }
         else
         {
+            for (int i = 0; i < this.expenseInfo[index].expenses.Count; i++)
+            {
+                if (System.DateTime.Parse(expense.GetDate()) > System.DateTime.Parse(this.expenseInfo[index].expenses[i].GetDate()))
+                {
+                    this.expenseInfo[index].expenses.Insert(i, expense);
+                    return;
+                }
+            }
+
             this.expenseInfo[index].expenses.Add(expense);
         }
     }
 
-    public void addMonth(int year, int month, float value)
+    public void addMonth(int year, int month)
     {
         monthStruct item;
         item.month = month;
@@ -129,7 +159,7 @@ public class Data
         int cnt = 0;
         for (int i = 0; i < 11; i++)
         {
-            float monthTotal = this.monthInfo[i].essentialTotal + this.monthInfo[i].nonEssentialTotal + this.monthInfo[i].vacationTotal + this.monthInfo[i].investmentTotal;
+            float monthTotal = this.monthInfo[i].essentialTotal + this.monthInfo[i].nonEssentialTotal + this.monthInfo[i].vacationTotal/*  + this.monthInfo[i].investmentTotal */;
             total += monthTotal;
 
             if (monthTotal != 0)
@@ -144,5 +174,21 @@ public class Data
         }
 
         return total / cnt;
+    }
+
+    public Expense getExpenseByKey(int key)
+    {
+        for (int i = 0; i < this.expenseInfo.Count; i++)
+        {
+            for (int j = 0; j < this.expenseInfo[i].expenses.Count; j++)
+            {
+                if (this.expenseInfo[i].expenses[j].GetKey() == key)
+                {
+                    return this.expenseInfo[i].expenses[j];
+                }
+            }
+        }
+
+        return null;
     }
 }
