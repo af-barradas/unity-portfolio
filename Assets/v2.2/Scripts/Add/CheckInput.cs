@@ -71,6 +71,30 @@ public class CheckInput : MonoBehaviour
         SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 
+    /* public void CheckStep2Edit()
+    {
+        // Validate value
+        if (value.text == "" || value.text == null || !((Mathf.Round(float.Parse(value.text) * 100f) / 100f) > 0f))
+        {
+            animationInput.UpdateWarningStatus(true, "Invalid value");
+            return;
+        }
+
+        if (newExpense.GetCategory() == null)
+        {
+            animationInput.UpdateWarningStatus(true, "Invalid category");
+            return;
+        }
+
+        newExpense.updateValue((Mathf.Round(float.Parse(value.text) * 100f) / 100f));
+        animationInput.UpdateWarningStatus(false, "");
+        animationInput.Add();
+
+        newExpense.Edit();
+
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+    } */
+
     public void Back()
     {
         newExpense.updateCategory(null);

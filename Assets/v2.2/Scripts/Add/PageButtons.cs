@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PageButtons : MonoBehaviour
 {
@@ -41,4 +42,15 @@ public class PageButtons : MonoBehaviour
     {
         animationInput.UpdateWarningStatus(false, "");
     }
+
+    /* public void Edit()
+    {
+        checkInput.CheckStep2Edit();
+    } */
+
+    /* public void Delete()
+    {
+        newExpense.Delete();
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+    } */
 }

@@ -79,7 +79,7 @@ public class Data
         {
             for (int i = 0; i < this.expenseInfo[index].expenses.Count; i++)
             {
-                if (System.DateTime.Parse(expense.GetDate()) > System.DateTime.Parse(this.expenseInfo[index].expenses[i].GetDate()))
+                if (System.DateTime.Parse(expense.GetDate()) >= System.DateTime.Parse(this.expenseInfo[index].expenses[i].GetDate()))
                 {
                     this.expenseInfo[index].expenses.Insert(i, expense);
                     return;
@@ -87,6 +87,42 @@ public class Data
             }
 
             this.expenseInfo[index].expenses.Add(expense);
+        }
+    }
+
+    public void deleteExpense(int key)
+    {
+        if (key == -1) return;
+
+        for (int i = 0; i < this.expenseInfo.Count; i++)
+        {
+            for (int j = 0; j < this.expenseInfo[i].expenses.Count; j++)
+            {
+                if (this.expenseInfo[i].expenses[j].GetKey() == key)
+                {
+                    System.DateTime date = System.DateTime.Parse(this.expenseInfo[i].expenses[j].GetDate());
+                    if (this.monthInfo[11].year == date.Year && this.monthInfo[11].month == date.Month)
+                    {
+
+                        string type = this.expenseInfo[i].expenses[j].GetType();
+                        float value = this.expenseInfo[i].expenses[j].GetValue();
+
+                        monthStruct currentMonth = this.monthInfo[11];
+
+                        if (type == Constants.essential.getName()) currentMonth.essentialTotal -= value;
+                        if (type == Constants.nonEssential.getName()) currentMonth.nonEssentialTotal -= value;
+                        if (type == Constants.vacation.getName()) currentMonth.vacationTotal -= value;
+                        if (type == Constants.investment.getName()) currentMonth.investmentTotal -= value;
+
+                        this.monthInfo[11] = currentMonth;
+                    }
+
+                    this.expenseInfo[i].expenses.RemoveAt(j);
+                    if (this.expenseInfo[i].expenses.Count == 0) this.expenseInfo.RemoveAt(i);
+
+                    return;
+                }
+            }
         }
     }
 

@@ -59,9 +59,9 @@ public class ListPageButtons : MonoBehaviour
         else { filterCategory.interactable = false; }
     }
 
-    public void editExpense(TextMeshProUGUI key)
+    public void deleteExpense(TextMeshProUGUI key)
     {
-        DataManager.fillSelectedExpense(Int16.Parse(key.text));
-        SceneManager.LoadScene(3, LoadSceneMode.Single);
+        DataManager.deleteExpense(Int16.Parse(key.text));
+        SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
 }

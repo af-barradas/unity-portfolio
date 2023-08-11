@@ -629,7 +629,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 056909299e97f384f84a938b42a27dd9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41bb46aac337bd445b69245989bb2f26, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -812,8 +812,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 265.48, y: 1.1261}
-  m_SizeDelta: {x: 69.036, y: 87.748}
+  m_AnchoredPosition: {x: 265.48, y: 0.000046492}
+  m_SizeDelta: {x: 69.038, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5243369561737531780
 CanvasRenderer:
@@ -836,7 +836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.007843138, g: 0.7882353, b: 0.84313726, a: 1}
+  m_Color: {r: 0.7254902, g: 0.003921569, b: 0.14901961, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -899,7 +899,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3669713616921878360}
         m_TargetAssemblyTypeName: ListPageButtons, Assembly-CSharp
-        m_MethodName: editExpense
+        m_MethodName: deleteExpense
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 4518424960172995071}

@@ -6,17 +6,23 @@ using UnityEngine;
 public static class DataManager
 {
     public static Data data;
-    public static Expense selectedExpense;
+    public static int selectedExpense = -1;
 
-    public static void fillSelectedExpense(int key)
+    public static void selectExpense(int key)
     {
-        DataManager.selectedExpense = DataManager.data.getExpenseByKey(key);
+        DataManager.selectedExpense = key;
     }
 
     public static void addExpense(Expense expense)
     {
         DataManager.updateMonthData(expense.GetDate(), expense.GetValue(), expense.GetType());
         DataManager.updateExpenseData(expense);
+        SaveSystem.Save(DataManager.data);
+    }
+
+    public static void deleteExpense(int key)
+    {
+        DataManager.data.deleteExpense(key);
         SaveSystem.Save(DataManager.data);
     }
 

@@ -66,4 +66,14 @@ public class NewExpense : MonoBehaviour
     {
         DataManager.addExpense(this.newExpense);
     }
+
+    /* public void Edit()
+    {
+        DataManager.editExpense(this.newExpense);
+    } */
+
+    /* public void Delete()
+    {
+        DataManager.deleteExpense();
+    } */
 }
