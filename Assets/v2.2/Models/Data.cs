@@ -25,6 +25,7 @@ public class Data
 
     public List<expenseStruct> expenseInfo;
     public List<monthStruct> monthInfo;
+    public List<Expense> monthlyExpenses;
 
     public float monthlyBudget;
     public int lastKey;
@@ -34,6 +35,7 @@ public class Data
         // Initialize lists
         this.expenseInfo = new List<expenseStruct>();
         this.monthInfo = new List<monthStruct>(12);
+        this.monthlyExpenses = new List<Expense>();
         this.monthlyBudget = 0;
         this.lastKey = 0;
     }
@@ -43,6 +45,7 @@ public class Data
         // Initialize lists
         this.expenseInfo = data.expenseInfo;
         this.monthInfo = data.monthInfo;
+        this.monthlyExpenses = data.monthlyExpenses;
         this.monthlyBudget = data.monthlyBudget;
         this.lastKey = data.lastKey;
     }
@@ -100,7 +103,7 @@ public class Data
             {
                 if (this.expenseInfo[i].expenses[j].GetKey() == key)
                 {
-                    System.DateTime date = System.DateTime.Parse(this.expenseInfo[i].expenses[j].GetDate());
+                    /* System.DateTime date = System.DateTime.Parse(this.expenseInfo[i].expenses[j].GetDate());
                     if (this.monthInfo[11].year == date.Year && this.monthInfo[11].month == date.Month)
                     {
 
@@ -115,7 +118,7 @@ public class Data
                         if (type == Constants.investment.getName()) currentMonth.investmentTotal -= value;
 
                         this.monthInfo[11] = currentMonth;
-                    }
+                    } */
 
                     this.expenseInfo[i].expenses.RemoveAt(j);
                     if (this.expenseInfo[i].expenses.Count == 0) this.expenseInfo.RemoveAt(i);
@@ -172,6 +175,11 @@ public class Data
         if (type == Constants.investment.getName()) month.investmentTotal += value;
 
         this.monthInfo[index] = month;
+    }
+
+    public void addMonthlyExpense(Expense expense)
+    {
+        this.monthlyExpenses.Add(expense);
     }
 
     public float getTotalYear(int index)

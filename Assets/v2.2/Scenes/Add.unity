@@ -5178,6 +5178,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 483e30287dbeada40b1ca5030e8ead31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &589509342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 589509343}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &589509343
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589509342}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.3801419, y: -1.8933012, z: 375.79053}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &589824305
 GameObject:
   m_ObjectHideFlags: 0
@@ -14530,6 +14561,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: {fileID: 310134692}
   value: {fileID: 1410674825}
+  isMonthly: {fileID: 90166921}
 --- !u!224 &1515869494 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3121839226005935158, guid: cb032aa22341bad42bdec9feee63b757, type: 3}

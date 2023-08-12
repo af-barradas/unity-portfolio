@@ -89,4 +89,16 @@ public class Expense
     {
         this.value = value;
     }
+
+    public Expense CloneExpense()
+    {
+        Expense newExpense = new Expense();
+        newExpense.SetKey(this.GetKey());
+        newExpense.SetDate(this.GetDate());
+        newExpense.SetType(this.GetType());
+        newExpense.SetCategory(this.GetCategory());
+        newExpense.SetValue(this.GetValue());
+        newExpense.SetDescription(this.GetDescription());
+        return newExpense;
+    }
 }

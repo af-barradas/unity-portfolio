@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public static class DataManager
@@ -20,8 +21,52 @@ public static class DataManager
         SaveSystem.Save(DataManager.data);
     }
 
+    public static void addMonthly(Expense expense)
+    {
+        System.DateTime today = System.DateTime.Today;
+        //DataManager.updateMonthData(today.Year + "-" + today.Month + "-1", expense.GetValue(), expense.GetType());
+        //DataManager.updateExpenseData(expense.CloneExpense());
+        DataManager.data.addMonthlyExpense(expense.CloneExpense());
+        DataManager.updateMonthly();
+        SaveSystem.Save(DataManager.data);
+    }
+
+    public static void updateMonthly()
+    {
+        System.DateTime today = System.DateTime.Today;
+
+        for (int i = 0; i < DataManager.data.monthlyExpenses.Count; i++)
+        {
+            System.DateTime lastDate = System.DateTime.Parse(DataManager.data.monthlyExpenses[i].GetDate());
+            int year = lastDate.Year;
+            int month = lastDate.Month;
+            if (year != today.Year || month != today.Month)
+            {
+                for (int j = year; j <= today.Year; j++)
+                {
+                    for (int k = month; k <= today.Month || (k <= 12 && j < today.Year); k++)
+                    {
+                        DataManager.data.monthlyExpenses[i].SetDate(j + "-" + k + "-1");
+                        Expense expense = new Expense();
+                        expense.SetDate(DataManager.data.monthlyExpenses[i].GetDate());
+                        expense.SetType(DataManager.data.monthlyExpenses[i].GetType());
+                        expense.SetDescription(DataManager.data.monthlyExpenses[i].GetDescription());
+                        expense.SetCategory(DataManager.data.monthlyExpenses[i].GetCategory());
+                        expense.SetValue(DataManager.data.monthlyExpenses[i].GetValue());
+                        DataManager.updateExpenseData(expense);
+                        DataManager.updateMonthData(expense.GetDate(), expense.GetValue(), expense.GetType());
+                    }
+
+                    month = 1;
+                }
+            }
+        }
+    }
+
     public static void deleteExpense(int key)
     {
+        Expense expense = DataManager.data.getExpenseByKey(key);
+        DataManager.updateMonthData(expense.GetDate(), -expense.GetValue(), expense.GetType());
         DataManager.data.deleteExpense(key);
         SaveSystem.Save(DataManager.data);
     }

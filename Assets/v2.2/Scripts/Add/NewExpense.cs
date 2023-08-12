@@ -64,7 +64,24 @@ public class NewExpense : MonoBehaviour
 
     public void Add()
     {
-        DataManager.addExpense(this.newExpense);
+        Expense expense = new Expense();
+        expense.SetDate(this.newExpense.GetDate());
+        expense.SetType(this.newExpense.GetType());
+        expense.SetDescription(this.newExpense.GetDescription());
+        expense.SetCategory(this.newExpense.GetCategory());
+        expense.SetValue(this.newExpense.GetValue());
+        DataManager.addExpense(expense);
+    }
+
+    public void AddMonthly()
+    {
+        Expense expense = new Expense();
+        expense.SetDate(this.newExpense.GetDate());
+        expense.SetType(this.newExpense.GetType());
+        expense.SetDescription(this.newExpense.GetDescription());
+        expense.SetCategory(this.newExpense.GetCategory());
+        expense.SetValue(this.newExpense.GetValue());
+        DataManager.addMonthly(expense);
     }
 
     /* public void Edit()

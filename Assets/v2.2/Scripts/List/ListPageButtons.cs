@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ListPageButtons : MonoBehaviour
 {
@@ -59,9 +60,46 @@ public class ListPageButtons : MonoBehaviour
         else { filterCategory.interactable = false; }
     }
 
-    public void deleteExpense(TextMeshProUGUI key)
+    public void deleteExpense(GameObject expense)
     {
-        DataManager.deleteExpense(Int16.Parse(key.text));
-        SceneManager.LoadScene(2, LoadSceneMode.Single);
+        GameObject key = expense.transform.Find("Key").gameObject;
+        DataManager.deleteExpense(Int16.Parse(key.GetComponent<TextMeshProUGUI>().text));
+
+        float expenseValue = float.Parse(expense.transform.Find("Value").gameObject.GetComponent<TextMeshProUGUI>().text.Split(" ")[1]);
+        GameObject expenseContent = expense.transform.parent.gameObject;
+        GameObject expenseScroll = expenseContent.transform.parent.gameObject;
+        GameObject year = expenseScroll.transform.parent.gameObject;
+        Destroy(expense);
+
+        expenseScroll.GetComponent<RectTransform>().sizeDelta = new Vector2(expenseScroll.GetComponent<RectTransform>().sizeDelta.x, expenseScroll.GetComponent<RectTransform>().sizeDelta.y - Constants.expenseHeight);
+
+        year.GetComponent<RectTransform>().sizeDelta = new Vector2(year.GetComponent<RectTransform>().sizeDelta.x, year.GetComponent<RectTransform>().sizeDelta.y - Constants.expenseHeight - 5);
+
+        year.transform.Find("Value").gameObject.GetComponent<TextMeshProUGUI>().text = "€ " + (float.Parse(year.transform.Find("Value").gameObject.GetComponent<TextMeshProUGUI>().text.Split(" ")[1]) - expenseValue).ToString();
+
+        GameObject yearContent = year.transform.parent.gameObject;
+        GameObject yearScroll = yearContent.transform.parent.gameObject;
+        GameObject yearList = yearScroll.transform.parent.gameObject;
+        GameObject view = yearList.transform.parent.gameObject;
+        GameObject yearlyAverage = view.transform.Find("Yearly Average").gameObject;
+
+        float total = float.Parse(yearlyAverage.transform.Find("Value").gameObject.GetComponent<TextMeshProUGUI>().text.Split(" ")[1]) * yearContent.transform.childCount;
+        total -= expenseValue;
+
+        if (expenseContent.transform.childCount == 1)
+        {
+            Destroy(year);
+        }
+
+        yearlyAverage.transform.Find("Value").gameObject.GetComponent<TextMeshProUGUI>().text = "€ " + (total / yearContent.transform.childCount).ToString();
+        //SceneManager.LoadScene(2, LoadSceneMode.Single);
+    }
+
+    public void updateList(GameObject expense)
+    {
+        GameObject key = expense.transform.Find("Key").gameObject;
+        DataManager.deleteExpense(Int16.Parse(key.GetComponent<TextMeshProUGUI>().text));
+        Destroy(expense);
+        //SceneManager.LoadScene(2, LoadSceneMode.Single);
     }
 }

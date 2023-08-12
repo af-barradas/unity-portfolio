@@ -93,7 +93,6 @@ public class YearList : MonoBehaviour
             newYear.transform.Find("Name").gameObject.GetComponent<TextMeshProUGUI>().text = DataManager.data.expenseInfo[i].year.ToString();
             newYear.transform.Find("Value").gameObject.GetComponent<TextMeshProUGUI>().text = "€ " + yearTotal.ToString();
             newYear.transform.Find("Scroll").gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(newYear.transform.Find("Scroll").gameObject.GetComponent<RectTransform>().sizeDelta.x, Constants.expenseHeight * newYear.transform.Find("Scroll").gameObject.transform.Find("Content").transform.childCount + 5 * (newYear.transform.Find("Scroll").gameObject.transform.Find("Content").transform.childCount - 1));
-            //newYear.GetComponent<RectTransform>().sizeDelta = new Vector2(newYear.GetComponent<RectTransform>().sizeDelta.x, 100);
 
             total += yearTotal;
         }

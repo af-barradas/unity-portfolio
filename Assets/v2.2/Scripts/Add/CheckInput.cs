@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CheckInput : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class CheckInput : MonoBehaviour
     [Header("Inputs")]
     [SerializeField] private TMP_InputField description;
     [SerializeField] private TMP_InputField value;
+    [SerializeField] private Toggle isMonthly;
 
     private System.DateTime today;
 
@@ -62,11 +64,12 @@ public class CheckInput : MonoBehaviour
             return;
         }
 
-        newExpense.updateValue((Mathf.Round(float.Parse(value.text) * 100f) / 100f));
+        newExpense.updateValue(Mathf.Round(float.Parse(value.text) * 100f) / 100f);
         animationInput.UpdateWarningStatus(false, "");
         animationInput.Add();
 
-        newExpense.Add();
+        if (isMonthly.isOn) newExpense.AddMonthly();
+        else newExpense.Add();
 
         SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
