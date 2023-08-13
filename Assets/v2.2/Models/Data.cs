@@ -29,6 +29,7 @@ public class Data
 
     public float monthlyBudget;
     public int lastKey;
+    public int monthlyLastKey;
 
     public Data()
     {
@@ -38,6 +39,7 @@ public class Data
         this.monthlyExpenses = new List<Expense>();
         this.monthlyBudget = 0;
         this.lastKey = 0;
+        this.monthlyLastKey = 0;
     }
 
     public Data(Data data)
@@ -48,6 +50,7 @@ public class Data
         this.monthlyExpenses = data.monthlyExpenses;
         this.monthlyBudget = data.monthlyBudget;
         this.lastKey = data.lastKey;
+        this.monthlyLastKey = data.monthlyLastKey;
     }
 
     public void addExpense(int index, Expense expense)
@@ -129,6 +132,20 @@ public class Data
         }
     }
 
+    public void deleteMonthlyExpense(int key)
+    {
+        if (key == -1) return;
+
+        for (int i = 0; i < this.monthlyExpenses.Count; i++)
+        {
+            if (this.monthlyExpenses[i].GetKey() == key)
+            {
+                this.monthlyExpenses.RemoveAt(i);
+                return;
+            }
+        }
+    }
+
     public void addMonth(int year, int month)
     {
         monthStruct item;
@@ -179,6 +196,8 @@ public class Data
 
     public void addMonthlyExpense(Expense expense)
     {
+        this.monthlyLastKey++;
+        expense.SetKey(this.monthlyLastKey);
         this.monthlyExpenses.Add(expense);
     }
 
@@ -234,5 +253,10 @@ public class Data
         }
 
         return null;
+    }
+
+    public List<Expense> getMonthlyExpenses()
+    {
+        return this.monthlyExpenses;
     }
 }

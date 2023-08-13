@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class HomePageButtons : MonoBehaviour
 {
     private InfoUpdate infoUpdate;
+    [SerializeField] private GameObject form;
+    [SerializeField] private Sprite openIcon;
+    [SerializeField] private Sprite closeIcon;
 
     // Start is called before the first frame update
     void Start()
@@ -15,8 +19,10 @@ public class HomePageButtons : MonoBehaviour
         infoUpdate = GameObject.Find("Manager").GetComponent<InfoUpdate>();
     }
 
-    public void Options(GameObject form)
+    public void Options(Image icon)
     {
+        if (form.activeSelf) icon.sprite = openIcon;
+        else icon.sprite = closeIcon;
         form.SetActive(!form.activeSelf);
     }
 

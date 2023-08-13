@@ -4756,10 +4756,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 492545108}
     m_Modifications:
-    - target: {fileID: 2005192069, guid: c97844dcbed0f644bbddf4d84d2aca17, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4726070244560859816, guid: c97844dcbed0f644bbddf4d84d2aca17, type: 3}
       propertyPath: m_Name
       value: Top Bar

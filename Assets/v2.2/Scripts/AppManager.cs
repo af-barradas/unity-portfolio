@@ -19,7 +19,7 @@ public class AppManager : MonoBehaviour
 
         infoUpdate.updateHomePage();
 
-        DataManager.updateMonthly();
+        DataManager.updateMonthly(false);
     }
 
     // Called when the application is closed

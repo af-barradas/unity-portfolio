@@ -27,11 +27,11 @@ public static class DataManager
         //DataManager.updateMonthData(today.Year + "-" + today.Month + "-1", expense.GetValue(), expense.GetType());
         //DataManager.updateExpenseData(expense.CloneExpense());
         DataManager.data.addMonthlyExpense(expense.CloneExpense());
-        DataManager.updateMonthly();
+        DataManager.updateMonthly(true);
         SaveSystem.Save(DataManager.data);
     }
 
-    public static void updateMonthly()
+    public static void updateMonthly(bool force)
     {
         System.DateTime today = System.DateTime.Today;
 
@@ -40,7 +40,7 @@ public static class DataManager
             System.DateTime lastDate = System.DateTime.Parse(DataManager.data.monthlyExpenses[i].GetDate());
             int year = lastDate.Year;
             int month = lastDate.Month;
-            if (year != today.Year || month != today.Month)
+            if (year != today.Year || month != today.Month || force)
             {
                 for (int j = year; j <= today.Year; j++)
                 {
@@ -68,6 +68,12 @@ public static class DataManager
         Expense expense = DataManager.data.getExpenseByKey(key);
         DataManager.updateMonthData(expense.GetDate(), -expense.GetValue(), expense.GetType());
         DataManager.data.deleteExpense(key);
+        SaveSystem.Save(DataManager.data);
+    }
+
+    public static void deleteMonthlyExpense(int key)
+    {
+        DataManager.data.deleteMonthlyExpense(key);
         SaveSystem.Save(DataManager.data);
     }
 
