@@ -20,6 +20,7 @@ public static class Constants
     public static Color negativeColor = Color.HSVToRGB(354f / 360, 64f / 100, 100f / 100);
 
     public static int expenseHeight = 90;
+    public static int dayWidth = 60;
 
     // Request Functions
     public static string GetSavePath()
