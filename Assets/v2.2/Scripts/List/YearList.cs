@@ -35,8 +35,8 @@ public class YearList : MonoBehaviour
         // Clear expenses
         clearInfo(content);
 
-        float total = 0;
-        int yearCnt = 0;
+        float totalAverage = 0;
+        int cntAverage = 0;
         for (int i = 0; i < DataManager.data.expenseInfo.Count; i++)
         {
             float yearTotal = 0;
@@ -61,6 +61,7 @@ public class YearList : MonoBehaviour
                 if (expenses[j].GetType() != filterTypeText && filterTypeText != null && filterTypeText != "" && filterTypeText != "All Types") continue;
                 if (expenses[j].GetCategory() != filterCategoryText && filterCategoryText != null && filterCategoryText != "" && filterCategoryText != "All Categories") continue;
 
+                if (System.DateTime.Today.Year != DataManager.data.expenseInfo[i].year) { totalAverage += expenses[j].GetValue(); cntAverage++; }
                 yearTotal += expenses[j].GetValue();
                 cnt++;
 
@@ -88,18 +89,14 @@ public class YearList : MonoBehaviour
 
             if (cnt == 0) { Destroy(newYear); continue; }
 
-            yearCnt++;
-
             newYear.transform.Find("Name").gameObject.GetComponent<TextMeshProUGUI>().text = DataManager.data.expenseInfo[i].year.ToString();
             newYear.transform.Find("Value").gameObject.GetComponent<TextMeshProUGUI>().text = "€ " + yearTotal.ToString();
             newYear.transform.Find("Scroll").gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(newYear.transform.Find("Scroll").gameObject.GetComponent<RectTransform>().sizeDelta.x, Constants.expenseHeight * newYear.transform.Find("Scroll").gameObject.transform.Find("Content").transform.childCount + 5 * (newYear.transform.Find("Scroll").gameObject.transform.Find("Content").transform.childCount - 1));
-
-            total += yearTotal;
         }
 
-        if (yearCnt > 0)
+        if (cntAverage > 0)
         {
-            average.text = "€ " + roundBy2(total / yearCnt).ToString();
+            average.text = "€ " + roundBy2(totalAverage / cntAverage).ToString();
         }
         else
         {
