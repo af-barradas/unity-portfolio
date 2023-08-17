@@ -8,7 +8,7 @@ public static class Constants
 
     public static Type essential = new("Essential", new List<string> { "Groceries", "Rent", "Bills", "Gym", "Health", "House", "Transports", "Other" });
     public static Type nonEssential = new("Non Essential", new List<string> { "Restaurant", "Leisure", "Clothing", "Hardware", "House", "Gift", "Other" });
-    public static Type vacation = new("Vacation", new List<string> { "Flight", "Stay", "Groceries", "Restaurant", "Sightseeing", "Gift", "Other" });
+    public static Type vacation = new("Vacation", new List<string> { "Transports", "Stay", "Leisure", "Groceries", "Restaurant", "Sightseeing", "Gift", "Other" });
     public static Type investment = new("Investment", new List<string> { "Real Estate", "Stocks", "PPR", "Bank/Gov", "Business", "Other" });
 
     public static Color essentialColor = Color.HSVToRGB(34f / 360, 81f / 100, 100f / 100);
