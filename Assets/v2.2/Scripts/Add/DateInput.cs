@@ -135,7 +135,7 @@ public class DateInput : MonoBehaviour
     public void MoveMonthUp()
     {
         int newMonth = System.DateTime.ParseExact(monthName.text, "MMM", CultureInfo.CurrentCulture).Month + 1;
-        if (newMonth > 12 || (System.DateTime.Today.Year == year && newMonth > month)) return;
+        if (newMonth > 12 || (System.DateTime.Today.Year == year && newMonth > System.DateTime.Today.Month)) return;
         updateMonth(newMonth);
         monthName.text = CultureInfo.CurrentCulture.DateTimeFormat.GetAbbreviatedMonthName(newMonth);
     }
